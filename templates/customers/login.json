@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "welcome": {
+      "type": "welcome"
+    }
+  },
+  "order": ["welcome"]
+}

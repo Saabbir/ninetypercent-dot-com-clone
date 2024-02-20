@@ -1,0 +1,16 @@
+{
+  "name": "shopify-starter-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shopify theme dev",
+    "sass": "sass ./src/scss/index.scss:./assets/bundle.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.71.0"
+  }
+}

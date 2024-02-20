@@ -1,0 +1,71 @@
+{% liquid
+  if section.settings.brand_name.size > 0
+    assign brand_name = section.settings.brand_name
+  else
+    assign brand_name = shop.name
+  endif
+%}
+
+<header class="c-header">
+  <div class="c-header__content l-wrap">
+    <a href="{{ routes.root_url }}" class="c-header__brand">
+      {% if section.settings.brand_logo != blank %}
+        {{ section.settings.brand_logo | image_url: width: 36 | image_tag }}
+      {% else %}
+        <span class="c-header__brand-name">{{ brand_name }}</span>
+      {% endif %}
+    </a>
+    <nav class="c-header__nav">
+      <ul>
+        {% for link in linklists[section.settings.menu].links %}
+          {% if link.links != blank %}
+            <li class="c-dropdown-menu-wrapper">
+              <a href="{{ link.url }}">
+                <span>{{ link.title }}</span>
+                {% render 'icon-chevron-down' %}
+              </a>
+              <ul class="c-dropdown-menu">
+                {% for dropLink in link.links %}
+                  <li>
+                    <a href="{{ dropLink.url }}">{{ dropLink.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header (Navbar)",
+  "tag": "section",
+  "class": "c-header-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "What's your brand name?"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Upload your brand logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Choose your primary menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
