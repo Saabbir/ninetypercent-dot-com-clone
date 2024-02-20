@@ -1,0 +1,53 @@
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'article_title' %}
+      <h1>{{ article.title }}</h1>
+    {% when 'article_content' %}
+      <p>{{ article.content }}</p>
+    {% when 'article_author' %}
+      <div>{{ article.author }}</div>
+    {% when 'article_published_date' %}
+      <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}">
+        {{- article.published_at | date: '%Y-%m-%d' -}}
+      </time>
+    {% when 'article_image' %}
+      {{ article.image | image_url: width: 1920 | image_tag: alt: article.image.alt }}
+    {% else %}
+      <p>Nothing in the article</p>
+  {% endcase %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Article Section",
+  "settings": [],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "article_title",
+      "limit": 1,
+      "name": "Title"
+    },
+    {
+      "type": "article_content",
+      "limit": 1,
+      "name": "Content"
+    },
+    {
+      "type": "article_image",
+      "limit": 1,
+      "name": "Image"
+    },
+    {
+      "type": "article_published_date",
+      "limit": 1,
+      "name": "Published Date"
+    },
+    {
+      "type": "article_author",
+      "limit": 1,
+      "name": "Author"
+    }
+  ]
+}
+{% endschema %}

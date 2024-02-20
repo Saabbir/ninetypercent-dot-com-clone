@@ -1,8 +1,27 @@
 {
+  "name": "Article template",
   "sections": {
-    "welcome": {
-      "type": "welcome"
+    "template": {
+      "type": "template-article",
+      "blocks": {
+        "title": {
+          "type": "article_title"
+        },
+        "author": {
+          "type": "article_author"
+        },
+        "published_date": {
+          "type": "article_published_date"
+        },
+        "content": {
+          "type": "article_content"
+        },
+        "image": {
+          "type": "article_image"
+        }
+      },
+      "block_order": ["title", "published_date", "author", "image", "content"]
     }
   },
-  "order": ["welcome"]
+  "order": ["template"]
 }
