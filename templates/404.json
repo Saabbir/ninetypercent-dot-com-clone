@@ -1,8 +1,9 @@
 {
+  "name": "404 Template",
   "sections": {
-    "welcome": {
-      "type": "welcome"
+    "template": {
+      "type": "template-404"
     }
   },
-  "order": ["welcome"]
+  "order": ["template"]
 }

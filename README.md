@@ -1,6 +1,6 @@
-## Shopify Starter Theme
+## Ninetypercent.com clone
 
-This is a starter theme to start any Shopify theme development.
+This is a clone of a popular site ninetypercent.com
 
 ![Screenshot](Screenshot.png)
 

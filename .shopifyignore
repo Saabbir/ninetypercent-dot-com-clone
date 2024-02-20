@@ -4,5 +4,6 @@ package.json
 package-lock.json
 README.md
 assets/bundle.css.map
+src
 Screenshot.png
 *.zip

@@ -1,0 +1,48 @@
+{% liquid
+  if section.settings.button_url != blank
+    assign button_url = section.settings.button_url
+  else
+    assign button_url = routes.root_url
+  endif
+%}
+
+<div class="l-wrap u-mw-600 u-text-center u-mx-auto">
+  <h1>{{ section.settings.title }}</h1>
+  <p class="u-mt-16">{{ section.settings.subtitle }}</p>
+  <div class="u-mt-24">
+    <a href="{{ button_url }}" class="c-btn c-btn--primary">{{ section.settings.button_label }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 Template",
+  "tag": "section",
+  "class": "c-404-template-section u-d-flex u-ai-center u-flex-1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "404",
+      "label": "404 Page Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "The page you're looking for is not found!",
+      "label": "404 Page Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Back to homepage",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ]
+}
+{% endschema %}

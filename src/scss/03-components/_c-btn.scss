@@ -1,0 +1,30 @@
+.c-btn {
+  border: 1px solid #000;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  min-width: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 14px;
+
+  &--outline {
+    background-color: transparent;
+  }
+
+  &--text {
+    border-color: transparent;
+    text-decoration: underline;
+  }
+
+  &--shadow {
+    border-color: transparent;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
