@@ -5,14 +5,14 @@
   text-decoration: none;
   padding: 12px 24px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
   min-width: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 14px;
+  letter-spacing: 1px;
+  font: normal 700 14px/1.5 var(--base-font);
 
   &--outline {
     background-color: transparent;
@@ -26,5 +26,17 @@
   &--shadow {
     border-color: transparent;
     box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &--block,
+  &--full {
+    display: block;
+    width: 100%;
+  }
+
+  &--black {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
   }
 }

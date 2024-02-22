@@ -1,0 +1,28 @@
+.errors {
+  border: 1px solid red;
+  padding: 16px;
+  position: relative;
+  margin-top: 48px;
+
+  & > ul {
+    padding-left: 20px;
+  }
+
+  &::before {
+    content: "Errors";
+    position: absolute;
+    top: 0;
+    background: red;
+    color: #fff;
+    padding: 8px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: translateY(-100%);
+    left: -1px;
+    padding-left: 16px;
+    right: -1px;
+  }
+}

@@ -1,0 +1,60 @@
+.c-form-groups {
+  display: grid;
+  gap: 16px;
+}
+
+.c-form-group {
+  display: grid;
+
+  > label {
+    display: block;
+    margin: 0 0 5px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #888;
+  }
+
+  > input,
+  > textarea {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #fff;
+    width: 100%;
+    min-height: 40px;
+    font: 400 16px/1 var(--base-font);
+    transition: 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    &::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: #888;
+      font: 400 14px/1 var(--base-font);
+    }
+    &::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #888;
+      font: 400 14px/1 var(--base-font);
+    }
+    &::-ms-input-placeholder {
+      /* IE 10+ */
+      color: #888;
+      font: 400 14px/1 var(--base-font);
+    }
+    &:-moz-placeholder {
+      /* Firefox 18- */
+      color: #888;
+      font: 400 14px/1 var(--base-font);
+    }
+  }
+
+  > textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+}

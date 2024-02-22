@@ -1,0 +1,7 @@
+<div class="l-wrap u-mt-32">
+  <ul>
+    {% for article in blogs.news.articles %}
+      <li>{{- article.title | link_to: article.url }}</li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,58 @@
+.c-article {
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  &__blog-link {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+    border-bottom: 1px solid;
+    cursor: pointer;
+    margin: 0 0 16px;
+  }
+
+  &__published-date {
+    color: #888;
+    font-size: 14px;
+    margin-top: 16px;
+    display: inline-block;
+  }
+
+  &__author {
+    margin-top: 16px;
+  }
+
+  &__copy {
+    // > * {
+    //   margin-top: 32px;
+    //   margin-bottom: 32px;
+    // }
+
+    // > *:last-child {
+    //   margin-bottom: 0;
+    // }
+
+    ul,
+    ol {
+      padding-left: 40px;
+    }
+
+    p + p {
+      margin-top: 32px;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}

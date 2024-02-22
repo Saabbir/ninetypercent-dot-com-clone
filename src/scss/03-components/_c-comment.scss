@@ -1,0 +1,52 @@
+.c-comment {
+  border: 1px solid #ddd;
+  margin: 0 0 16px;
+  padding: 16px;
+
+  &__author-and-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 8px;
+    gap: 16px;
+  }
+
+  &__author {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 5px;
+    background-color: yellow;
+    color: #000;
+    transform: rotate(-5deg) translate(-32px, -10px);
+    border-radius: 2px;
+  }
+
+  &__created-at {
+    color: #888;
+    font-size: 0.8em;
+  }
+
+  &__posted-successfully,
+  &__not-posted-successfully {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+
+    > svg {
+      width: 20px;
+      height: 20px;
+      display: flex;
+    }
+  }
+
+  &__posted-successfully > svg {
+    stroke: green;
+  }
+
+  &__not-posted-successfully > svg {
+    stroke: red;
+  }
+}
