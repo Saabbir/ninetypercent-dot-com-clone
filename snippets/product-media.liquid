@@ -1,0 +1,12 @@
+{% case media.media_type %}
+  {% when 'image' %}
+    {{ media | image_url: width: 1000 | image_tag }}
+  {% when 'video' %}
+    {{ media | video_tag: controls: true, class: 'u-w-full' }}
+  {% when 'external_video' %}
+    {{ media | external_video_tag: class: 'u-w-full' }}
+  {% when 'model' %}
+    {{ media | model_viewer_tag }}
+  {% else %}
+    {{ 'media-1' | placeholder_svg_tag }}
+{% endcase %}

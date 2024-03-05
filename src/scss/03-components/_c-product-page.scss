@@ -1,0 +1,17 @@
+.c-product-page {
+  &__content {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 60% 1fr;
+  }
+
+  &__medias > * {
+    width: 100%;
+  }
+
+  &__infos {
+    position: sticky;
+    top: var(--header-min-height);
+    align-self: start;
+  }
+}

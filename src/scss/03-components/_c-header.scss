@@ -1,3 +1,9 @@
+.c-header-section {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .c-header {
   background: #f9f9f9;
   padding: 15px 0;

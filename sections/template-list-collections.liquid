@@ -1,0 +1,20 @@
+<div class="l-wrap">
+  <div class="l-3-col">
+    {% for collection in collections %}
+      <div class="c-card">
+        <a href="{{ collection.url }}">
+          {% if collection.featured_image %}
+            {{ collection.featured_image.src | image_url: width: 400 | image_tag }}
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag }}
+          {% endif %}
+        </a>
+        <div class="c-card__copy">
+          <h4>
+            <a href="{{ collection.url }}">{{ collection.title }}</a>
+          </h4>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

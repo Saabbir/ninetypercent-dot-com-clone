@@ -1,0 +1,19 @@
+<div class="c-product-page">
+  <div class="c-product-page__content">
+    <div class="c-product-page__medias">
+      {% for media in product.media %}
+        {% render 'product-media', media: media %}
+      {% endfor %}
+    </div>
+    <div class="c-product-page__infos">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Template Product"
+}
+{% endschema %}

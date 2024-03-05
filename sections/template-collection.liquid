@@ -1,0 +1,35 @@
+<div class="c-template-collection-section__content l-wrap">
+  <h1 class="u-mb-16">{{ collection.title }}</h1>
+  {% paginate collection.products by section.settings.products_per_page %}
+    <div class="c-product-cards">
+      {% for product in collection.products %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+
+    <div class="u-text-center u-mt-32">
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination }}
+      {% endif %}
+    </div>
+  {% endpaginate %}
+</div>
+
+{% schema %}
+{
+  "tag": "section",
+  "class": "c-template-collection-section",
+  "name": "Template Collection",
+  "settings": [
+    {
+      "id": "products_per_page",
+      "label": "Products per page",
+      "type": "range",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 9
+    }
+  ]
+}
+{% endschema %}
