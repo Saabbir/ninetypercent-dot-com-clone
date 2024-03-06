@@ -15,6 +15,10 @@
         <span class="c-header__brand-name">{{ brand_name }}</span>
       {% endif %}
     </a>
+    <div class="c-header__hamburger">
+      {% render 'icon-bars' %}
+      {% render 'icon-x-mark' %}
+    </div>
     <nav class="c-header__nav">
       <ul>
         {% for link in linklists[section.settings.menu].links %}
@@ -38,6 +42,11 @@
             </li>
           {% endif %}
         {% endfor %}
+        <li>
+          <a href="{{routes.cart_url}}">
+            {%- render 'icon-cart' %} Cart <sup class="c-cart-count">{{ cart.item_count }}</sup></a
+          >
+        </li>
       </ul>
     </nav>
   </div>

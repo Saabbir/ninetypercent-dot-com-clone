@@ -1,0 +1,34 @@
+<div class="c-cart-page l-wrap u-my-16">
+  <header class="c-cart-page__header u-my-8">
+    <h2>
+      Your cart <sup class="u-text-gray">({{ cart.item_count }})</sup>
+    </h2>
+    <div><a href="{{routes.all_products_collection_url}}">Continue shopping</a></div>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart.items %}
+        <tr>
+          <td>{{ forloop.index }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.price | money }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% schema %}
+{
+  "name": "Template Cart"
+}
+{% endschema %}

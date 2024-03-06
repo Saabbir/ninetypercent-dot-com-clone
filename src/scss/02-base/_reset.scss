@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  word-break: break-all;
 }
 
 body {
@@ -34,4 +35,39 @@ hr {
   padding: 0;
   border: 0;
   border-bottom: 1px solid #ddd;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #000;
+  padding: 6px 12px;
+  min-height: 44px;
+  border-radius: 0;
+  background-color: #fff;
+  font: normal 400 18px/1.5 var(--base-font);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
 }

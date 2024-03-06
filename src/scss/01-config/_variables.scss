@@ -2,6 +2,11 @@ $base-font: "Intervogue", system-ui, -apple-system, BlinkMacSystemFont,
   "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
   sans-serif;
 
+$header_z_index: 9;
+$header_dropdown_z_index: 10;
+$swiper_nav_z_index: 8;
+$swiper_wrapper_z_index: 7;
+
 :root {
   --base-font: #{$base-font};
   --header-min-height: 80px;

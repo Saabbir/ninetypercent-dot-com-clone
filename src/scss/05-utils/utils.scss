@@ -1,18 +1,10 @@
-@import "./margin-top";
-@import "./margin-bottom";
+@import "./margin";
+@import "./padding";
 @import "./flex";
+@import "./color";
 
 .u-text-center {
   text-align: center;
-}
-
-.u-m-0 {
-  margin: 0;
-}
-
-.u-mx-auto {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .u-mw-600 {
@@ -63,6 +55,10 @@
   text-decoration: none;
 }
 
+.u-text-linethrough {
+  text-decoration: line-through;
+}
+
 .u-underline {
   text-decoration: underline;
 }
@@ -81,4 +77,22 @@
 
 .u-object-cover {
   object-fit: cover;
+}
+
+.u-hidden-gte-1024 {
+  @media (min-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.u-hidden-lte-1023 {
+  @media (max-width: 1023px) {
+    display: none !important;
+  }
+}
+
+.u-hidden-lte-767 {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
 }

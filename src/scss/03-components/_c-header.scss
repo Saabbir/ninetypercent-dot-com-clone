@@ -1,7 +1,7 @@
 .c-header-section {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: $header_z_index;
 }
 
 .c-header {
@@ -16,21 +16,75 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px 40px;
+    gap: 10px 30px;
+  }
 
-    @media (max-width: 767px) {
-      justify-content: center;
+  &__brand {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-family: monospace;
+    font-size: 22px;
+  }
+
+  &__hamburger {
+    width: 30px;
+    height: 30px;
+    display: grid;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+
+    .c-icon-x-mark {
+      display: none;
+    }
+
+    &.is-open {
+      .c-icon-x-mark {
+        display: block;
+      }
+      .c-icon-bars {
+        display: none;
+      }
     }
   }
 
   &__nav {
+    @media (max-width: 1023px) {
+      position: fixed;
+      width: 100%;
+      left: 0;
+      top: var(--header-min-height);
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 16px 0;
+
+      opacity: 0;
+      visibility: hidden;
+
+      &.is-visible {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+
     > ul {
       margin: 0;
       padding: 0;
       list-style: none;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
+
+      @media (min-width: 1024px) {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
     }
 
     > li {
@@ -47,23 +101,35 @@
       color: #2b2725;
       padding: 8px 16px;
       transition: 0.2s;
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      white-space: nowrap;
 
       &:hover,
       &:focus {
         color: #000;
       }
+
+      > svg.c-icon-cart {
+        width: 20px;
+        margin-right: 8px;
+      }
     }
   }
+}
 
-  &__brand {
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-family: monospace;
-    font-size: 22px;
-  }
+.c-cart-count {
+  display: inline-flex;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 50%;
+  background: red;
+  padding: 4px;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-left: 4px;
+  position: relative;
+  margin-top: -12px;
 }

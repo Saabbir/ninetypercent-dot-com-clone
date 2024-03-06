@@ -1,0 +1,20 @@
+.c-badge {
+  padding: 4px 12px;
+  border-radius: 11px;
+  background-color: yellow;
+  color: #000;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 10px;
+  min-height: 22px;
+  display: inline-grid;
+  align-items: center;
+  justify-content: center;
+
+  &--red {
+    background-color: red;
+    color: #fff;
+  }
+}
