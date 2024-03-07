@@ -59,12 +59,24 @@
   text-decoration: line-through;
 }
 
+.u-text-normal {
+  font-weight: normal;
+}
+
 .u-underline {
   text-decoration: underline;
 }
 
 .u-color-gray {
-  color: #888;
+  color: $text-color-gray;
+}
+
+.u-bg-gray {
+  background-color: $bg-color-gray;
+}
+
+.u-w-auto {
+  width: auto;
 }
 
 .u-w-full {
@@ -95,4 +107,20 @@
   @media (max-width: 767px) {
     display: none !important;
   }
+}
+
+.u-color-red {
+  color: red;
+}
+
+.u-d-grid {
+  display: grid;
+}
+
+.u-minw-150 {
+  min-width: 150px;
+}
+
+.u-font-size-12 {
+  font-size: 12px;
 }

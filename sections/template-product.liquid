@@ -1,13 +1,9 @@
-<!-- Swiper CSS and JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 {% liquid
-  assign currentVariant = product.selected_or_first_available_variant
+  assign selected_variant = product.selected_or_first_available_variant
 %}
 
-<div class="c-product-page u-pt-16 u-pb-32">
-  <div class="c-product-page__content l-wrap-fluid">
+<div class="c-product-page u-py-32">
+  <div class="c-product-page__content l-wrap-1200">
     <div class="c-product-page__medias">
       <div class="u-hidden-lte-1023">
         {% for media in product.media %}
@@ -35,100 +31,129 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
-
-      <div class="c-product-page__desc u-mt-24">
-        {{ product.description }}
-      </div>
     </div>
     <div class="c-product-page__infos">
       {% form 'product', product %}
-        <input type="hidden" name="id" value="{{ currentVariant.id }}">
-        <div class="c-product-page__vendor u-text-gray">{{ product.vendor }}</div>
-        <h2 class="c-product-page__title">{{ product.title }}</h2>
+        <input type="hidden" name="id" value="{{ selected_variant.id }}">
 
-        <div class="c-product-page__price u-mt-8">
-          <span class="u-text-linethrough">{{ currentVariant.compare_at_price | money }}</span>
-          <span>{{ currentVariant.price | money }}</span>
-          {% if currentVariant.compare_at_price > currentVariant.price %}
-            <span class="c-badge c-badge--red">on Sale</span>
-          {% endif %}
-        </div>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'vendor' %}
+              <div class="c-product-page__vendor u-text-gray">{{ product.vendor }}</div>
 
-        {% unless product.has_only_default_variant %}
-          <div data-url="{{ product.url }}" data-section="{{ section.id }}">
-            {% for option in product.options_with_values %}
-              <div class="u-my-16">
-                <label for="{{ option.name }}-variant-dropdown">{{ option.name }}</label>
-                <select name="options[{{ option.name }}]" id="{{ option.name }}-variant-dropdown">
-                  {% for value in option.values %}
-                    <option
-                      value="{{ value }}"
-                      {% if option.selected_value == value %}
-                        selected="selected"
-                      {% endif %}
-                    >
-                      {{ value }}
-                    </option>
-                  {% endfor %}
-                </select>
+            {% when 'title' %}
+              <h2 class="c-product-page__title">{{ product.title }}</h2>
+
+            {% when 'price' %}
+              <div class="c-product-page__price u-mt-8">
+                {% if selected_variant.compare_at_price %}
+                  <span class="u-text-linethrough">{{ selected_variant.compare_at_price | money }}</span>
+                {% endif %}
+                <span>{{ selected_variant.price | money }}</span>
+                {% if selected_variant.compare_at_price > selected_variant.price %}
+                  <span class="c-badge c-badge--red">on Sale</span>
+                {% endif %}
               </div>
-            {% endfor %}
-          </div>
-        {% endunless %}
 
-        <div class="u-my-16">
-          <label for="quantity">Quantity</label>
-          <input type="number" name="quantity" id="quantity" value="1" min="1">
-        </div>
+            {% when 'variant_selector' %}
+              {% unless product.has_only_default_variant %}
+                <div data-url="{{ product.url }}" data-section="{{ section.id }}">
+                  {% for option in product.options_with_values %}
+                    <div class="u-my-16">
+                      <label for="{{ option.name }}-variant-dropdown">{{ option.name }}</label>
+                      <select name="options[{{ option.name }}]" id="{{ option.name }}-variant-dropdown">
+                        {% for value in option.values %}
+                          <option
+                            value="{{ value }}"
+                            {% if option.selected_value == value %}
+                              selected="selected"
+                            {% endif %}
+                          >
+                            {{ value }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endunless %}
 
-        <div class="u-my-16">
-          <button
-            type="submit"
-            name="add"
-            class="c-btn c-btn--black c-btn--full"
-            {% if currentVariant.available == false %}
-              disabled
-            {% endif %}
-          >
-            {% if currentVariant.available == false %}
-              Sold out
+            {% when 'quantity' %}
+              <div class="c-product-page__quantity-wrapper u-my-16">
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity" id="quantity" value="1" min="1">
+              </div>
+
+            {% when 'add_to_cart_button' %}
+              <div class="u-my-16">
+                <button
+                  type="submit"
+                  name="add"
+                  class="c-btn c-btn--black c-btn--full"
+                  {% if selected_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                  {% if selected_variant.available == false %}
+                    Sold out
+                  {% else %}
+                    Add to cart
+                  {% endif %}
+                </button>
+              </div>
+
+            {% when 'description' %}
+              <div class="c-product-page__desc u-mt-24">
+                {{ product.description }}
+              </div>
             {% else %}
-              Add to cart
-            {% endif %}
-          </button>
-        </div>
+              <p>What else! TODO</p>
+          {% endcase %}
+        {% endfor %}
       {% endform %}
     </div>
   </div>
 </div>
 
-<script>
-  void (function pollForSwiper() {
-    if (window.Swiper) {
-      const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: false,
-
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-        },
-
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      });
-    } else {
-      setTimeout(pollForSwiper, 100);
-    }
-  })();
-</script>
-
 {% schema %}
 {
-  "name": "Template Product"
+  "name": "Template Product",
+  "blocks": [
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "add_to_cart_button",
+      "name": "Add to cart Button",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    }
+  ]
 }
 {% endschema %}

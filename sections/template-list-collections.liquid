@@ -1,20 +1,43 @@
-<div class="l-wrap u-py-16">
-  <div class="l-3-col">
-    {% for collection in collections %}
-      <div class="c-card">
-        <a href="{{ collection.url }}">
-          {% if collection.featured_image %}
-            {{ collection.featured_image.src | image_url: width: 400 | image_tag }}
-          {% else %}
-            {{ 'collection-1' | placeholder_svg_tag }}
-          {% endif %}
-        </a>
-        <div class="c-card__copy">
-          <h4>
-            <a href="{{ collection.url }}">{{ collection.title }}</a>
-          </h4>
-        </div>
-      </div>
-    {% endfor %}
+<div class="c-list-collection-page u-py-32">
+  <div class="l-wrap">
+    <header class="u-d-f u-ai-center u-jc-sb u-gap-16 u-mb-16">
+      <h2>{{ section.settings.title }}</h2>
+      <div><a href="{{ routes.collections_url }}">Go back to all collections</a></div>
+    </header>
+    <div class="l-col-4">
+      {% for collection in collections %}
+        {% if collection.all_products_count > 0 %}
+          <div class="c-card u-bg-gray">
+            <a href="{{ collection.url }}" class="c-card__img-wrapper">
+              {% if collection.featured_image != blank %}
+                {{ collection.featured_image.src | image_url: width: 400 | image_tag }}
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag }}
+              {% endif %}
+            </a>
+            <div class="c-card__copy u-p-16 u-mt-auto">
+              <h4>
+                <a class="u-no-underline" href="{{ collection.url }}">{{ collection.title }}</a>
+              </h4>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Template List Collections",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "All collections"
+    }
+  ]
+}
+{% endschema %}

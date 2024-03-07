@@ -1,30 +1,85 @@
-<div class="c-cart-page l-wrap u-my-16">
-  <header class="c-cart-page__header u-my-8">
-    <h2>
-      Your cart <sup class="u-text-gray">({{ cart.item_count }})</sup>
-    </h2>
-    <div><a href="{{routes.all_products_collection_url}}">Continue shopping</a></div>
-  </header>
-  <table>
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Qty</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in cart.items %}
-        <tr>
-          <td>{{ forloop.index }}</td>
-          <td>{{ item.title }}</td>
-          <td>{{ item.price | money }}</td>
-          <td>{{ item.quantity }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="c-cart-page l-wrap u-my-62">
+  {% if cart.item_count > 0 %}
+    <header class="c-cart-page__header u-my-62">
+      <h2>
+        Your cart <small class="u-text-gray">({{ cart.item_count }})</small>
+      </h2>
+      <div><a href="{{routes.all_products_collection_url}}">Continue shopping</a></div>
+    </header>
+
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th><!-- Action --></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr>
+              <td>
+                <div class="c-cart-page__product">
+                  <a class="c-cart-page__product-img-link" href="{{ item.url }}">
+                    {% if item.image %}
+                      {{ item.image.src | image_url: width: 100 | image_tag }}
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag }}
+                    {% endif %}
+                  </a>
+                  <div class="c-cart-page__product-info">
+                    <h3 class="c-cart-page__product-title">
+                      <a href="{{ item.url }}">{{ item.product.title | truncatewords: 5 }}</a>
+                    </h3>
+                    <p class="c-cart-page__product-variant-title u-color-gray">
+                      <small>{{ item.variant.title }}</small>
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td>{{ item.line_price | money }}</td>
+              <td>
+                <input
+                  class="c-cart-page__quantity-input"
+                  type="number"
+                  name="updates[]"
+                  value="{{ item.quantity }}"
+                  min="1"
+                >
+              </td>
+              <td>
+                <a class="u-color-red" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0"
+                  >Remove</a
+                >
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="c-cart-page__checkout-section">
+        <div class="c-cart-page__checkout-section-content u-pt-32">
+          <h3 class="u-mb-16 u-d-flex u-ai-center u-jc-sb u-flex-wrap">
+            <span class="u-text-gray u-text-normal">Subtotal:</span>
+            <strong>{{ cart.total_price | money }}</strong>
+          </h3>
+          <div><button class="c-btn c-btn--full" type="submit" name="update">Update</button></div>
+          <div class="u-mt-16">
+            <button class="c-btn c-btn--black c-btn--full" type="submit" name="checkout">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <div class="c-cart-page__empty">
+      <h1>Your cart is empty</h1>
+      <div class="u-mt-24">
+        <a class="c-btn c-btn--black" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+      </div>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}

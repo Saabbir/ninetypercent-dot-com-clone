@@ -16,7 +16,7 @@ body {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 36px;
   line-height: 1.2;
 }
 
@@ -60,7 +60,6 @@ textarea {
 }
 
 table {
-  border: 1px solid #ddd;
   border-collapse: collapse;
   width: 100%;
 }
@@ -68,6 +67,15 @@ table {
 td,
 th {
   padding: 8px 16px;
-  border: 1px solid #ddd;
+  border: 0;
   text-align: left;
+  padding-left: 0;
+}
+
+thead {
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  cursor: pointer;
 }

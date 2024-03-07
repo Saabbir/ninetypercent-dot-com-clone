@@ -1,7 +1,45 @@
 @import "./padding-top";
 @import "./padding-bottom";
 
+.u-p-8 {
+  padding: 8px;
+}
+
+.u-p-16 {
+  padding: 16px;
+}
+
+.u-py-8 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
 .u-py-16 {
   padding-top: 16px;
   padding-bottom: 16px;
+}
+
+.u-py-32 {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.u-py-40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.u-py-48 {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.u-py-56 {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.u-py-62 {
+  padding-top: 62px;
+  padding-bottom: 62px;
 }

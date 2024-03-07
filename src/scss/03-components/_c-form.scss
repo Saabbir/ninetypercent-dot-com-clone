@@ -1,0 +1,44 @@
+.c-form {
+  .errors {
+    margin: 64px 0 32px;
+  }
+
+  &__label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $text-color-gray;
+  }
+
+  &__posted-successfully,
+  &__not-posted-successfully {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 32px 0;
+    padding: 16px;
+    border: 1px solid $border-color;
+
+    > svg {
+      width: 20px;
+      height: 20px;
+      display: flex;
+    }
+  }
+
+  &__posted-successfully {
+    border-color: green;
+
+    > svg {
+      stroke: green;
+    }
+  }
+
+  &__not-posted-successfully {
+    border-color: red;
+
+    > svg {
+      stroke: red;
+    }
+  }
+}

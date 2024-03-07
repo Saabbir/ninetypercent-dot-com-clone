@@ -1,8 +1,49 @@
 .c-cart-page {
+  tbody td {
+    padding: 32px 32px 32px 0;
+    vertical-align: top;
+  }
+
+  th {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: $text-color-gray;
+  }
+
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+  }
+
+  &__checkout-section {
+    border-top: 1px solid $border-color;
+  }
+
+  &__checkout-section-content {
+    max-width: 300px;
+    margin-left: auto;
+  }
+
+  &__quantity-input {
+    width: 100px;
+  }
+
+  &__empty {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__product {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+
+  &__product-title > a {
+    text-decoration: none;
   }
 }

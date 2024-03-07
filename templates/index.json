@@ -1,8 +1,11 @@
 {
   "sections": {
-    "welcome": {
-      "type": "welcome"
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "featured_collection": "featured-collection"
+      }
     }
   },
-  "order": ["welcome"]
+  "order": ["featured_collection"]
 }

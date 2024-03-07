@@ -14,7 +14,9 @@
   > a > svg {
     width: 16px;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 5px;
+    position: relative;
+    margin-top: -2px;
   }
 }
 

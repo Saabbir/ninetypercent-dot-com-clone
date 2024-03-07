@@ -18,7 +18,7 @@
 
   &__infos {
     position: sticky;
-    top: var(--header-min-height);
+    top: calc(var(--header-min-height) + 16px);
     align-self: start;
 
     @media (min-width: 1024px) {
@@ -30,8 +30,11 @@
   }
 
   &__media {
-    margin: 0 0 8px;
     position: relative;
+
+    &:not(:last-child) {
+      margin: 0 0 8px;
+    }
 
     &.external_video,
     &.video {
@@ -64,5 +67,16 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  &__quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    white-space: nowrap;
+
+    > input {
+      width: 100px;
+    }
   }
 }

@@ -1,24 +1,26 @@
-<div class="c-template-collection-section__content l-wrap">
-  <h2 class="u-mb-16">{{ collection.title }}</h2>
-  {% paginate collection.products by section.settings.products_per_page %}
-    <div class="c-product-cards">
-      {% for product in collection.products %}
-        {% render 'product-card', product: product %}
-      {% endfor %}
-    </div>
+<div class="c-collection-page u-py-32">
+  <div class="l-wrap">
+    <h2 class="u-mb-16">{{ collection.title }}</h2>
+    {% paginate collection.products by section.settings.products_per_page %}
+      <div class="c-product-cards">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          <p>No products available in this collection.</p>
+        {% endfor %}
+      </div>
 
-    <div class="u-text-center u-mt-32">
       {% if paginate.pages > 1 %}
-        {{ paginate | default_pagination }}
+        <div class="u-text-center u-mt-32">
+          {{ paginate | default_pagination }}
+        </div>
       {% endif %}
-    </div>
-  {% endpaginate %}
+    {% endpaginate %}
+  </div>
 </div>
 
 {% schema %}
 {
-  "tag": "section",
-  "class": "c-template-collection-section",
   "name": "Template Collection",
   "settings": [
     {

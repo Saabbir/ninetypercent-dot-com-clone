@@ -1,0 +1,72 @@
+<div class="c-contact-form u-my-62">
+  <div class="l-wrap-{{ section.settings.form_width }}">
+    {% form 'contact', class: 'c-form' %}
+      {% if section.settings.title != blank %}
+        <h2 class="u-my-16">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if form.posted_successfully? %}
+        <div class="c-form__posted-successfully">
+          {% render 'icon-success' %}
+          <span>You message has been posted successfully!</span>
+        </div>
+      {% endif %}
+
+      {% if form.errors != null %}
+        {{ form.errors | default_errors }}
+      {% endif %}
+
+      <div class="u-d-grid u-gap-16">
+        <div class="l-col-2">
+          <div class="c-contact-form__group">
+            <label class="c-form__label" for="contact_name">Name</label>
+            <input type="text" id="contact_name" name="contact[name]" placeholder="Jhon Doe">
+          </div>
+          <div class="c-contact-form__group">
+            <label class="c-form__label" for="contact_email">Email</label>
+            <input type="text" id="contact_email" name="contact[email]" placeholder="jhon@doe.com">
+          </div>
+        </div>
+        <div class="c-contact-form__group">
+          <label class="c-form__label" for="contact_message">Message</label>
+          <textarea name="contact[body]" id="contact_message" placeholder="Howdy? ..."></textarea>
+        </div>
+        <div>
+          <button type="submit" class="c-btn c-btn--black u-minw-150">{{ section.settings.btn_text }}</button>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Contact us"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button label",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "form_width",
+      "label": "Form Width",
+      "default": "600"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form"
+    }
+  ]
+}
+{% endschema %}

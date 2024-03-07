@@ -1,0 +1,47 @@
+<div class="c-featured-collection u-my-32">
+  <div class="l-wrap">
+    <h2 class="u-mb-16">{{ section.settings.title }}</h2>
+    <div class="l-col-{{ section.settings.products_to_show }}">
+      {% for product in section.settings.featured_collection.products limit: section.settings.products_to_show %}
+        {% render 'product-card', product: product %}
+      {% else %}
+        {% for product in (1..section.settings.products_to_show) %}
+          {% render 'placeholder-product-card' %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Select a collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "default": 4,
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Number of products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,9 +1,15 @@
-.u-d-flex {
+.u-d-flex,
+.u-d-f {
   display: flex;
 }
 
-.u-d-iflex {
+.u-d-iflex,
+.u-d-if {
   display: inline-flex;
+}
+
+.u-flex-wrap {
+  flex-wrap: wrap;
 }
 
 .u-ai-center {
@@ -14,6 +20,26 @@
   justify-content: center;
 }
 
+.u-jc-sb {
+  justify-content: space-between;
+}
+
 .u-flex-1 {
   flex: 1;
+}
+
+.u-fg-1,
+.u-flex-grow {
+  flex-grow: 1;
+}
+
+.u-fg-child,
+.u-flex-grow-child {
+  > * {
+    flex-grow: 1;
+  }
+}
+
+.u-gap-16 {
+  gap: 16px;
 }

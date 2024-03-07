@@ -8,5 +8,5 @@
   {% when 'model' %}
     {{ media | model_viewer_tag }}
   {% else %}
-    {{ 'media-1' | placeholder_svg_tag }}
+    {{ media | media_tag }}
 {% endcase %}

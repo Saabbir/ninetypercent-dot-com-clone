@@ -44,7 +44,8 @@
         {% endfor %}
         <li>
           <a href="{{routes.cart_url}}">
-            {%- render 'icon-cart' %} Cart <sup class="c-cart-count">{{ cart.item_count }}</sup></a
+            {%- render 'icon-cart' %}
+            <sup class="c-cart-count">{{ cart.item_count }}</sup></a
           >
         </li>
       </ul>
