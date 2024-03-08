@@ -385,6 +385,10 @@ button {
   color: #fff;
   border-color: #000;
 }
+.c-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 
 .c-article {
   padding-top: 60px;

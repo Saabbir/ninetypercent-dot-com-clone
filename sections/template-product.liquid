@@ -47,9 +47,11 @@
             {% when 'price' %}
               <div class="c-product-page__price u-mt-8">
                 {% if selected_variant.compare_at_price %}
-                  <span class="u-text-linethrough">{{ selected_variant.compare_at_price | money }}</span>
+                  <span class="u-text-linethrough u-text-gray" id="compare_at_price">
+                    {{- selected_variant.compare_at_price | money -}}
+                  </span>
                 {% endif %}
-                <span>{{ selected_variant.price | money }}</span>
+                <span id="price">{{ selected_variant.price | money }}</span>
                 {% if selected_variant.compare_at_price > selected_variant.price %}
                   <span class="c-badge c-badge--red">on Sale</span>
                 {% endif %}
@@ -57,7 +59,7 @@
 
             {% when 'variant_selector' %}
               {% unless product.has_only_default_variant %}
-                <div data-url="{{ product.url }}" data-section="{{ section.id }}">
+                <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                   {% for option in product.options_with_values %}
                     <div class="u-my-16">
                       <label for="{{ option.name }}-variant-dropdown">{{ option.name }}</label>
@@ -75,7 +77,11 @@
                       </select>
                     </div>
                   {% endfor %}
-                </div>
+
+                  <script type="application/json" id="product_variants">
+                    {{- product.variants | json -}}
+                  </script>
+                </variant-selector>
               {% endunless %}
 
             {% when 'quantity' %}
@@ -90,6 +96,7 @@
                   type="submit"
                   name="add"
                   class="c-btn c-btn--black c-btn--full"
+                  id="submit_btn"
                   {% if selected_variant.available == false %}
                     disabled
                   {% endif %}
@@ -114,6 +121,59 @@
     </div>
   </div>
 </div>
+
+<script>
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener('change', this.onVariantChange);
+    }
+
+    onVariantChange() {
+      const productVariants = JSON.parse(this.querySelector('#product_variants').textContent);
+      const selectedOptions = Array.from(this.querySelectorAll('select'), (selectEl) => selectEl.value).join(' / ');
+      const variant = productVariants.find((variant) => variant.title === selectedOptions);
+      console.log('Saabbir:', 'variant', variant);
+
+      // console.log('Saabbir:', 'selectedOptions', selectedOptions);
+      // console.log('Saabbir:', 'variant', variant);
+
+      // Set variant id
+      document.querySelector('input[name="id"]').value = variant.id;
+
+      // Update current url with variant id
+      window.history.replaceState({}, '', `?variant=${variant.id}`);
+
+      this.updatePriceAndAvailability(variant);
+    }
+
+    async updatePriceAndAvailability({ id, available }) {
+      // Set variant availability
+      const submitBtn = document.querySelector('#submit_btn');
+      if (!available) {
+        submitBtn.setAttribute('disabled', 'disabled');
+        submitBtn.textContent = 'Sold out';
+      } else {
+        submitBtn.removeAttribute('disabled');
+        submitBtn.textContent = 'Add to cart';
+      }
+
+      const endpoint = `${this.dataset.url}?variant=${id}&section_id=${this.dataset.section}`;
+      const response = await fetch(endpoint);
+      const text = await response.text();
+      const html = new DOMParser().parseFromString(text, 'text/html');
+      const newPrice = html.querySelector('#price').innerHTML;
+      const newCompareAtPrice = html.querySelector('#compare_at_price').innerHTML;
+
+      if (newPrice && newCompareAtPrice) {
+        document.querySelector('#price').innerHTML = newPrice;
+        document.querySelector('#compare_at_price').innerHTML = newCompareAtPrice;
+      }
+    }
+  }
+
+  customElements.define('variant-selector', VariantSelector);
+</script>
 
 {% schema %}
 {

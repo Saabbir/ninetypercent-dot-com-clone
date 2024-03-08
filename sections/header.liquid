@@ -45,8 +45,10 @@
         <li>
           <a href="{{routes.cart_url}}">
             {%- render 'icon-cart' %}
-            <sup class="c-cart-count">{{ cart.item_count }}</sup></a
-          >
+            {% if cart.item_count > 0 %}
+              <sup class="c-cart-count">{{ cart.item_count }}</sup>
+            {% endif %}
+          </a>
         </li>
       </ul>
     </nav>
