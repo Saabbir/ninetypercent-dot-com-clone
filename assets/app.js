@@ -2,6 +2,9 @@ void (function () {
   document.body.addEventListener("click", handleBodyClicks);
 
   function handleBodyClicks(clickEvent) {
+    /**
+     * Handle header hamburger click
+     */
     if (clickEvent.target.closest(".c-header__hamburger")) {
       const nav = document.querySelector(".c-header__nav");
       if (nav) {
@@ -10,6 +13,21 @@ void (function () {
       clickEvent.target
         .closest(".c-header__hamburger")
         .classList.toggle("is-open");
+    }
+
+    /**
+     * Handle icon search
+     */
+    if (clickEvent.target.closest(".c-search-container")) {
+      // clickEvent.preventDefault();
+    }
+    if (
+      clickEvent.target.closest(".c-search-container") &&
+      !clickEvent.target.closest(".c-search-form")
+    ) {
+      clickEvent.target
+        .closest(".c-search-container")
+        .classList.toggle("is-clicked");
     }
   }
 

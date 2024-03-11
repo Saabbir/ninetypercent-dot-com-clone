@@ -1,0 +1,77 @@
+<div class="u-py-32">
+  <div class="l-wrap">
+    <form action="{{ routes.search_url }}" class="c-search-page-search-form u-mb-32 u-mx-auto" method="get">
+      <div class="c-search-page-search-form__group">
+        <input type="search" name="q" placeholder="Search..." value="{{ search.terms }}">
+        <button type="submit" class="c-btn c-btn--black">Search</button>
+      </div>
+    </form>
+    {% paginate search.results by section.settings.results_per_page %}
+      {% if search.performed %}
+        {% if search.results.size > 0 %}
+          <p class="u-my-32 u-text-center">
+            <strong>{{ search.results.size }}</strong>
+            {% if search.results.size > 1 %}
+              {{ 'results' }}
+            {% else %}
+              {{ 'result' }}
+            {% endif %}
+            found for search term
+            <strong>{{ search.terms | escape }}</strong>
+          </p>
+          <div class="l-col-{{ section.settings.columns_per_row }}">
+            {% for item in search.results %}
+              {% case item.object_type %}
+                {% when 'product' %}
+                  {% render 'product-card', product: item, object_type: 'product' %}
+
+                {% when 'article' %}
+                  {% render 'article-card', article: item, object_type: 'article' %}
+
+                {% when 'page' %}
+                  {% render 'page-card', page: item, object_type: 'page' %}
+
+                {% else %}
+                  {% render 'placeholder-product-card' %}
+              {% endcase %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>
+            No search results found for the search term <strong>{{ search.terms | escape }}</strong>
+          </p>
+        {% endif %}
+      {% else %}
+        <p class="u-text-center">Please use above search box to find articles, products, or pages.</p>
+      {% endif %}
+
+      {% render 'pagination', paginate: paginate %}
+    {% endpaginate %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Template Search",
+  "settings": [
+    {
+      "type": "range",
+      "id": "results_per_page",
+      "min": 4,
+      "max": 12,
+      "default": 8,
+      "label": "Results per page",
+      "step": 1
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 4,
+      "default": 3,
+      "step": 1,
+      "label": "Columns per row",
+      "id": "columns_per_row"
+    }
+  ]
+}
+{% endschema %}

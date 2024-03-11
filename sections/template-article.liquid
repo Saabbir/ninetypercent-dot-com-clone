@@ -1,4 +1,4 @@
-<article class="c-article">
+<article class="c-article u-py-32">
   {% for block in section.blocks %}
     {% case block.type %}
         <!-- Published date -->
@@ -59,13 +59,13 @@
 </article>
 
 {% if blog.comments_enabled? %}
-  <section>
-    <hr>
+  <hr>
+  <section class="u-py-32">
     <div class="l-wrap-700">
       <!-- Comments -->
-      <div id="comments" class="u-mt-16">
-        <h2 class="u-mb-16">{{ article.comments_count }} Comments</h2>
-        {% if article.comments_count > 0 %}
+      {% if article.comments_count > 0 %}
+        <div id="comments" class="u-mb-32">
+          <h2 class="u-mb-16">{{ article.comments_count }} Comments</h2>
           {% paginate article.comments by 3 %}
             {% for comment in article.comments %}
               <div class="c-comment">
@@ -77,18 +77,14 @@
               </div>
             {% endfor %}
 
-            {% if paginate.pages > 0 %}
-              {{ paginate | default_pagination }}
-            {% endif %}
+            {% render 'pagination', paginate: paginate %}
           {% endpaginate %}
-        {% else %}
-          <p>No comments</p>
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
 
       <!-- Comment form -->
-      <div id="comment_form" class="u-mb-48">
-        <h2 class="u-mt-40">Any comment?</h2>
+      <div id="comment_form">
+        <h2>Any comment?</h2>
         {% form 'new_comment', article %}
           {% if form.posted_successfully? %}
             <div class="c-comment__posted-successfully">
@@ -101,7 +97,7 @@
             {{ form.errors | default_errors }}
           {% endif %}
 
-          <div class="l-2-col u-mt-24">
+          <div class="l-col-2 u-mt-24">
             <div class="c-form-group">
               <label for="comment_name">Name</label>
               <input type="text" name="comment[author]" id="comment_name" required placeholder="Jane Doe">

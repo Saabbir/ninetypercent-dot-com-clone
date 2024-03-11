@@ -1,0 +1,9 @@
+.c-search-page-search-form {
+  max-width: 600px;
+
+  &__group {
+    display: flex;
+    align-items: stretch;
+    white-space: nowrap;
+  }
+}

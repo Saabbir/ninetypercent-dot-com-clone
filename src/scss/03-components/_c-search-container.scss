@@ -1,0 +1,62 @@
+.c-search-container {
+  .c-search-form {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--header-min-height);
+    padding: 16px;
+    background: #f9f9f9;
+    display: none;
+
+    &__group {
+      position: relative;
+    }
+
+    input {
+      border: 1px solid $border-color;
+      padding-right: 50px;
+      appearance: none;
+
+      &::-webkit-search-cancel-button {
+        appearance: none;
+      }
+    }
+
+    button[type="submit"] {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50px;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      right: 16px;
+      color: $text-color-gray;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  > svg {
+    width: 20px;
+    cursor: pointer;
+  }
+
+  > .c-icon-x-mark {
+    display: none;
+  }
+
+  &.is-clicked {
+    > .c-search-form {
+      display: block;
+    }
+
+    > .c-icon-x-mark {
+      display: block;
+    }
+
+    > .c-icon-search {
+      display: none;
+    }
+  }
+}

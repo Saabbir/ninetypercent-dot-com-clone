@@ -1,6 +1,10 @@
 <div class="c-collection-page u-py-32">
   <div class="l-wrap">
-    <h2 class="u-mb-16">{{ collection.title }}</h2>
+    <header class="u-d-f u-ai-center u-jc-sb u-gap-16 u-mb-16">
+      <h2>{{ collection.title }}</h2>
+      <div><a href="{{ routes.collections_url }}">Go back to all collections</a></div>
+    </header>
+
     {% paginate collection.products by section.settings.products_per_page %}
       <div class="c-product-cards">
         {% for product in collection.products %}
@@ -10,11 +14,7 @@
         {% endfor %}
       </div>
 
-      {% if paginate.pages > 1 %}
-        <div class="u-text-center u-mt-32">
-          {{ paginate | default_pagination }}
-        </div>
-      {% endif %}
+      {% render 'pagination', paginate: paginate %}
     {% endpaginate %}
   </div>
 </div>

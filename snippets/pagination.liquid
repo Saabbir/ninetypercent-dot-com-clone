@@ -1,0 +1,23 @@
+{% if paginate.pages > 1 %}
+  <div class="u-mt-32 u-d-f u-jc-center">
+    <nav role="navigation" class="c-custom-pagination">
+      {% if paginate.previous %}
+        <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+      {% endif %}
+
+      {% if paginate.parts %}
+        {% for part in paginate.parts %}
+          {% if part.is_link %}
+            <a href="{{ part.url }}">{{ part.title }}</a>
+          {% else %}
+            <span href="{{ part.url }}">{{ part.title }}</span>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if paginate.next %}
+        <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+      {% endif %}
+    </nav>
+  </div>
+{% endif %}

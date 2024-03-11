@@ -1,0 +1,10 @@
+<div class="c-card">
+  <a href="{{ page.url }}" class="u-d-flex">
+    {{ 'image' | placeholder_svg_tag: 'c-card__img' }}
+  </a>
+  <div class="c-card__copy">
+    <h2 class="c-card__title">{{ page.title | link_to: page.url }}</h2>
+    <p class="u-my-16">{{ page.content | strip_html | truncatewords: 15 }}</p>
+    <a class="u-link u-mt-32" href="{{ page.url }}">View page {% render 'icon-arrow-right' -%}</a>
+  </div>
+</div>

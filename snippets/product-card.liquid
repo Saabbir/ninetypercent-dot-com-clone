@@ -10,6 +10,9 @@
     <h4 class="c-product-card__title">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h4>
-    <div class="c-product-card__price">{{ product.price | money }}</div>
+    <div class="c-product-card__price u-mt-8">{{ product.price | money }}</div>
+    {% if object_type != null %}
+      <a class="u-link u-mt-32" href="{{ product.url }}">View product {% render 'icon-arrow-right' -%}</a>
+    {% endif %}
   </div>
 </div>

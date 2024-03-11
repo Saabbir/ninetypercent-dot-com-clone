@@ -11,3 +11,29 @@
 @import "./c-badge";
 @import "./c-cart-page";
 @import "./c-form";
+@import "./c-search-container";
+@import "./c-search-page-search-form";
+@import "./c-custom-pagination";
+
+.c-object-type {
+  position: absolute;
+  text-align: center;
+  left: 8px;
+  top: 8px;
+  padding: 8px;
+  background: red;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.c-cart-remove-link {
+  color: red;
+
+  > svg {
+    width: 20px;
+  }
+}

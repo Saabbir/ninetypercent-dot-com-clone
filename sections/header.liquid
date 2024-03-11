@@ -50,6 +50,23 @@
             {% endif %}
           </a>
         </li>
+        {% if request.page_type != 'search' %}
+          <li>
+            <a class="c-search-container">
+              {% render 'icon-search' %}
+              {% render 'icon-x-mark' %}
+
+              <form autocomplete="off" class="c-search-form" action="{{ routes.search_url }}" method="get">
+                <div class="c-search-form__group l-wrap">
+                  <input type="search" name="q" placeholder="Search...">
+                  <button type="submit">
+                    {% render 'icon-search' %}
+                  </button>
+                </div>
+              </form>
+            </a>
+          </li>
+        {% endif %}
       </ul>
     </nav>
   </div>
