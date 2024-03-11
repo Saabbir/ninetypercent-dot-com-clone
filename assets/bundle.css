@@ -221,6 +221,9 @@ p {
   height: 30px;
   display: grid;
 }
+.c-header__hamburger > svg {
+  width: 100%;
+}
 @media (min-width: 1024px) {
   .c-header__hamburger {
     display: none;
@@ -237,6 +240,7 @@ p {
 }
 @media (max-width: 1023px) {
   .c-header__nav {
+    display: block;
     position: fixed;
     width: 100%;
     left: 0;
@@ -254,7 +258,10 @@ p {
 }
 @media (min-width: 1024px) {
   .c-header__nav {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
   }
 }
 .c-header__nav > ul {

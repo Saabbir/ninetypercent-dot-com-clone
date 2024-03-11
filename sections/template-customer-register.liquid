@@ -1,0 +1,26 @@
+<div class="c-register-page u-py-32">
+  <div class="l-wrap">
+    <h2 class="u-mb-16">Create an account</h2>
+    {% form 'create_customer', class: 'c-form u-d-grid u-gap-16' %}
+      <div class="c-form__group">
+        <label for="first_name">First Name</label>
+        <input type="text" name="customer[first_name]" id="first_name" placeholder="First Name">
+      </div>
+      <div class="c-form__group">
+        <label for="last_name">Last Name</label>
+        <input type="text" name="customer[last_name]" id="last_name" placeholder="Last Name">
+      </div>
+      <div class="c-form__group">
+        <label for="email">Email</label>
+        <input type="email" name="customer[email]" id="email" placeholder="Email">
+      </div>
+      <div class="c-form__group">
+        <label for="password">Password</label>
+        <input type="password" name="customer[password]" id="password" placeholder="Password">
+      </div>
+      <div class="c-form__group">
+        <button type="submit" class="c-btn c-btn--black">Register</button>
+      </div>
+    {% endform %}
+  </div>
+</div>
