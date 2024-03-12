@@ -7,7 +7,7 @@
 %}
 
 <header class="c-header">
-  <div class="c-header__content l-wrap-fluid">
+  <div class="c-header__content l-wrap">
     <a href="{{ routes.root_url }}" class="c-header__brand">
       {% if section.settings.brand_logo != blank %}
         {{ section.settings.brand_logo | image_url: width: 36 | image_tag }}

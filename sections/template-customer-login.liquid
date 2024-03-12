@@ -1,0 +1,70 @@
+<div class="c-login-page u-py-32" x-data="{ loginForm: true, recoverYourPasswordForm: false }">
+  <div class="l-wrap-600" x-show="loginForm">
+    <header class="u-d-f u-ai-center u-jc-sb u-mb-40 u-gap-16">
+      <h1>Login</h1>
+      <div>Don't have an account? <a href="{{ routes.account_register_url }}" class="u-link">Create account</a></div>
+    </header>
+
+    {% form 'customer_login', class: 'c-form u-d-grid u-gap-32' %}
+      {% if form.errors != null %}
+        {{ form.errors | default_errors }}
+      {% endif %}
+
+      <div class="c-form__group">
+        <label for="email">Email</label>
+        <input type="email" name="customer[email]" id="email" placeholder="Email" autocomplete="email">
+      </div>
+
+      {% if form.password_needed %}
+        <div class="c-form__group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="password"
+            placeholder="Password"
+            autocomplete="current-password"
+          >
+
+          <div class="u-mt-8 u-text-right">
+            <a href="#" @click.prevent="loginForm = false; recoverYourPasswordForm = true">Forgot your password?</a>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="c-form__group">
+        <button type="submit" class="c-btn c-btn--black c-btn--full">Login</button>
+      </div>
+    {% endform %}
+
+    {% if shop.checkout.guest_login %}
+      <div class="u-my-16 u-text-center">or</div>
+      {% form 'guest_login' %}
+        <div class="c-form__group">
+          <button type="submit" class="c-btn c-btn--black c-btn--block">Continue as guest</button>
+        </div>
+      {% endform %}
+    {% endif %}
+  </div>
+
+  <div class="l-wrap-600" x-show="recoverYourPasswordForm" x-cloak>
+    <h1 class="u-mb-40">Recover your password</h1>
+
+    {% form 'recover_customer_password', class: 'c-form u-d-grid u-gap-32' %}
+      {{ form.errors | default_errors }}
+
+      <div class="c-form__group">
+        <label for="recover_password_email">Email</label>
+        <input type="email" name="email" id="recover_password_email" placeholder="Email" autocomplete="email">
+      </div>
+
+      <div class="c-form__group">
+        <button type="submit" class="c-btn c-btn--black c-btn--full">Recover Password</button>
+      </div>
+
+      <div class="c-form__group">
+        <a href="#" @click.prevent="loginForm = true; recoverYourPasswordForm = false">Back to login</a>
+      </div>
+    {% endform %}
+  </div>
+</div>

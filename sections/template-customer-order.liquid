@@ -1,0 +1,18 @@
+<div class="c-order-page u-py-32">
+  <div class="l-wrap">
+    <header class="u-d-f u-jc-sb u-gap-16 u-mb-32">
+      <div>
+        <h2 class="u-d-f u-ai-center u-gap-16">
+          <span>Order {{ order.name }}</span>
+          <span class="c-badge c-badge--red">{{ order.financial_status_label }}</span>
+        </h2>
+        <p class="u-mt-8 u-text-gray">Placed on {{ order.created_at | date: format: 'date' }}</p>
+      </div>
+      <a href="{{ routes.account_url }}">Back to account</a>
+    </header>
+    {% for item in order.line_items %}
+      <h3>{{ item.title }}</h3>
+      {{ item.image | image_url: width: 100 | image_tag }}
+    {% endfor %}
+  </div>
+</div>

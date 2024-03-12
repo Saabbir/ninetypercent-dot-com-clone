@@ -52,6 +52,27 @@ textarea {
   &:focus {
     outline: none;
   }
+
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $text-color-gray;
+    font: normal 400 18px/1.5 var(--base-font);
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $text-color-gray;
+    font: normal 400 18px/1.5 var(--base-font);
+  }
+  &::-ms-input-placeholder {
+    /* IE 10+ */
+    color: $text-color-gray;
+    font: normal 400 18px/1.5 var(--base-font);
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: $text-color-gray;
+    font: normal 400 18px/1.5 var(--base-font);
+  }
 }
 
 textarea {
@@ -88,4 +109,19 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $text-color-gray;
+  display: flex;
+  line-height: 1;
+  white-space: nowrap;
+  margin: 0 0 6px;
+}
+
+[x-cloak] {
+  display: none !important;
 }

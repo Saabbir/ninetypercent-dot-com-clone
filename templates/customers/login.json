@@ -1,8 +1,8 @@
 {
   "sections": {
-    "welcome": {
-      "type": "welcome"
+    "template": {
+      "type": "template-customer-login"
     }
   },
-  "order": ["welcome"]
+  "order": ["template"]
 }

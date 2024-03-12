@@ -1,25 +1,77 @@
 <div class="c-register-page u-py-32">
-  <div class="l-wrap">
-    <h2 class="u-mb-16">Create an account</h2>
-    {% form 'create_customer', class: 'c-form u-d-grid u-gap-16' %}
-      <div class="c-form__group">
-        <label for="first_name">First Name</label>
-        <input type="text" name="customer[first_name]" id="first_name" placeholder="First Name">
+  <div class="l-wrap-600">
+    <h1 class="u-mb-40 u-text-center">Create an account</h1>
+    {% form 'create_customer', class: 'c-form u-d-grid u-gap-32' %}
+      {% if form.posted_successfully? %}
+        <div class="c-form__posted-successfully">
+          {% render 'icon-success' %}
+          <span>Your account has been created successfully!</span>
+        </div>
+      {% endif %}
+
+      {% if form.errors != null %}
+        {{ form.errors | default_errors }}
+      {% endif %}
+
+      <div class="l-col-2 u-gap-32-16">
+        <div class="c-form__group">
+          <label for="first_name">First Name</label>
+          <input
+            type="text"
+            name="customer[first_name]"
+            id="first_name"
+            placeholder="First Name"
+            autocomplete="given-name"
+          >
+        </div>
+
+        <div class="c-form__group">
+          <label for="last_name">Last Name</label>
+          <input
+            type="text"
+            name="customer[last_name]"
+            id="last_name"
+            placeholder="Last Name"
+            autocomplete="family-name"
+          >
+        </div>
       </div>
+
       <div class="c-form__group">
-        <label for="last_name">Last Name</label>
-        <input type="text" name="customer[last_name]" id="last_name" placeholder="Last Name">
+        <label for="Birthday">Birthday</label>
+        <input
+          type="date"
+          name="customer[note][Birthday]"
+          id="Birthday"
+        >
       </div>
+
       <div class="c-form__group">
         <label for="email">Email</label>
-        <input type="email" name="customer[email]" id="email" placeholder="Email">
+        <input type="email" name="customer[email]" id="email" placeholder="Email" autocomplete="email">
       </div>
+
       <div class="c-form__group">
         <label for="password">Password</label>
-        <input type="password" name="customer[password]" id="password" placeholder="Password">
+        <input
+          type="password"
+          name="customer[password]"
+          id="password"
+          placeholder="Password"
+          autocomplete="new-password"
+        >
       </div>
+
       <div class="c-form__group">
-        <button type="submit" class="c-btn c-btn--black">Register</button>
+        <button type="submit" class="c-btn c-btn--black c-btn--full">Register</button>
+      </div>
+
+      <div class="c-form__group">
+        Already have an account?
+        <a href="{{ routes.account_login_url }}" class="u-link u-ml-8">
+          <span>Log In</span>
+          {% render 'icon-arrow-right' %}
+        </a>
       </div>
     {% endform %}
   </div>

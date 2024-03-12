@@ -69,6 +69,34 @@ select:focus,
 textarea:focus {
   outline: none;
 }
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #707070;
+  font: normal 400 18px/1.5 var(--base-font);
+}
+input::-moz-placeholder,
+select::-moz-placeholder,
+textarea::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #707070;
+  font: normal 400 18px/1.5 var(--base-font);
+}
+input::-ms-input-placeholder,
+select::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  /* IE 10+ */
+  color: #707070;
+  font: normal 400 18px/1.5 var(--base-font);
+}
+input:-moz-placeholder,
+select:-moz-placeholder,
+textarea:-moz-placeholder {
+  /* Firefox 18- */
+  color: #707070;
+  font: normal 400 18px/1.5 var(--base-font);
+}
 
 textarea {
   resize: vertical;
@@ -104,6 +132,21 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #707070;
+  display: flex;
+  line-height: 1;
+  white-space: nowrap;
+  margin: 0 0 6px;
+}
+
+[x-cloak] {
+  display: none !important;
 }
 
 .l-wrap, .l-wrap-1200, .l-wrap-800, .l-wrap-700, .l-wrap-600 {
@@ -286,9 +329,9 @@ p {
   font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #2b2725;
+  color: #707070;
   padding: 8px 16px;
-  transition: 0.2s;
+  transition: 0.15s;
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
@@ -760,7 +803,7 @@ p {
 }
 
 .c-form .errors {
-  margin: 64px 0 32px;
+  margin-top: 28px;
 }
 .c-form__label {
   font-size: 12px;
@@ -900,6 +943,12 @@ p {
 }
 .c-cart-remove-link > svg {
   width: 20px;
+}
+
+.c-hr {
+  width: 100%;
+  height: 1px;
+  background-color: #dedede;
 }
 
 .swiper {
@@ -1120,6 +1169,14 @@ p {
   margin-bottom: 62px;
 }
 
+.u-ml-8 {
+  margin-left: 8px;
+}
+
+.u-ml-16 {
+  margin-left: 16px;
+}
+
 .u-pt-0 {
   padding-top: 0;
 }
@@ -1315,16 +1372,44 @@ p {
   flex-grow: 1;
 }
 
+.u-gap-8 {
+  gap: 8px;
+}
+
 .u-gap-16 {
   gap: 16px;
+}
+
+.u-gap-24 {
+  gap: 24px;
+}
+
+.u-gap-32 {
+  gap: 32px;
+}
+
+.u-gap-16-32 {
+  gap: 16px 32px;
+}
+
+.u-gap-32-16 {
+  gap: 32px 16px;
 }
 
 .u-text-gray {
   color: #888;
 }
 
+.u-text-left {
+  text-align: left;
+}
+
 .u-text-center {
   text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
 }
 
 .u-mw-600 {
