@@ -23,11 +23,15 @@
 }
 
 body {
-  font: normal 400 18px/1.5 var(--base-font);
+  font: normal 400 16px/1.5 var(--base-font);
   margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+p {
+  color: #707070;
 }
 
 h1 {
@@ -111,9 +115,8 @@ table {
 td,
 th {
   padding: 8px 16px;
-  border: 0;
+  border: 1px solid #dedede;
   text-align: left;
-  padding-left: 0;
 }
 
 thead {
@@ -342,6 +345,17 @@ label {
 .c-header__nav a > svg.c-icon-cart {
   width: 20px;
 }
+.c-header a[data-customer-name] {
+  position: relative;
+}
+.c-header a[data-customer-name]::after {
+  content: "as " attr(data-customer-name);
+  display: block;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(7px);
+  font-size: 0.8em;
+}
 
 .c-cart-count {
   display: inline-flex;
@@ -419,6 +433,7 @@ label {
   font-weight: 700;
   min-width: 100px;
   display: inline-flex;
+  gap: 4px;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
@@ -448,6 +463,13 @@ label {
 .c-btn:disabled {
   opacity: 0.5;
   cursor: default;
+}
+.c-btn--small {
+  padding: 6px 16px;
+  font-size: 12px;
+}
+.c-btn--rounded {
+  border-radius: 4px;
 }
 
 .c-article__image {
@@ -634,6 +656,24 @@ label {
   display: flex;
   flex-direction: column;
 }
+.c-card[data-card-no] {
+  position: relative;
+}
+.c-card[data-card-no]::before {
+  content: attr(data-card-no);
+  position: absolute;
+  font-size: 100px;
+  color: #000;
+  opacity: 0.05;
+  left: 0;
+  top: 0;
+  line-height: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
 .c-card__img-wrapper > img {
   width: 100%;
 }
@@ -761,10 +801,30 @@ label {
   background-color: red;
   color: #fff;
 }
+.c-badge--black {
+  background-color: #000;
+  color: #fff;
+}
+.c-badge--success {
+  background-color: green;
+  color: #fff;
+}
+.c-badge--gray {
+  background-color: gray;
+  color: #fff;
+}
 
+.c-cart-page td,
+.c-cart-page th {
+  border: 0;
+  padding-left: 0;
+}
 .c-cart-page tbody td {
   padding: 32px 32px 32px 0;
   vertical-align: top;
+}
+.c-cart-page tr:not(:last-child) {
+  border-bottom: 1px solid #dedede;
 }
 .c-cart-page th {
   text-transform: uppercase;
@@ -921,6 +981,34 @@ label {
   pointer-events: none;
   opacity: 0.5;
   border-color: #ddd;
+}
+
+.c-order-card {
+  border: 1px solid #dedede;
+  padding: 16px;
+}
+.c-order-card:not(:last-child) {
+  margin-bottom: 32px;
+}
+.c-order-card__top {
+  display: flex;
+  gap: 62px;
+}
+.c-order-card__img-and-info {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+}
+.c-order-card__delivery-address {
+  max-width: 300px;
+}
+.c-order-card__info {
+  max-width: 400px;
+}
+.c-order-card__fulfillment {
+  border-top: 1px solid #ddd;
+  margin-top: 32px;
+  padding-top: 16px;
 }
 
 .c-object-type {
@@ -1119,6 +1207,10 @@ label {
 
 .u-mb-62 {
   margin-bottom: 62px;
+}
+
+.u-mb-16-not-last-child:not(:last-child) {
+  margin-bottom: 16px;
 }
 
 .u-m-auto {
@@ -1350,6 +1442,14 @@ label {
   align-items: center;
 }
 
+.u-ai-start {
+  align-items: start;
+}
+
+.u-ai-end {
+  align-items: end;
+}
+
 .u-jc-center {
   justify-content: center;
 }
@@ -1445,6 +1545,10 @@ label {
 .u-text-uppercase,
 .u-text-upcase {
   text-transform: uppercase;
+}
+
+.u-text-capitalize {
+  text-transform: capitalize;
 }
 
 .u-text-lowercase,

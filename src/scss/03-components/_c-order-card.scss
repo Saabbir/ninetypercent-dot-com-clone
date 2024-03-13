@@ -1,0 +1,33 @@
+.c-order-card {
+  border: 1px solid $border-color;
+  padding: 16px;
+
+  &:not(:last-child) {
+    margin-bottom: 32px;
+  }
+
+  &__top {
+    display: flex;
+    gap: 62px;
+  }
+
+  &__img-and-info {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 16px;
+  }
+
+  &__delivery-address {
+    max-width: 300px;
+  }
+
+  &__info {
+    max-width: 400px;
+  }
+
+  &__fulfillment {
+    border-top: 1px solid #ddd;
+    margin-top: 32px;
+    padding-top: 16px;
+  }
+}

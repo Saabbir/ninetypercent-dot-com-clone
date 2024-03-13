@@ -17,4 +17,19 @@
     background-color: red;
     color: #fff;
   }
+
+  &--black {
+    background-color: #000;
+    color: #fff;
+  }
+
+  &--success {
+    background-color: green;
+    color: #fff;
+  }
+
+  &--gray {
+    background-color: gray;
+    color: #fff;
+  }
 }

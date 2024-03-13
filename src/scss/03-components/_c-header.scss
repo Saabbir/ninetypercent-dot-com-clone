@@ -123,6 +123,19 @@
       }
     }
   }
+
+  a[data-customer-name] {
+    position: relative;
+
+    &::after {
+      content: "as " attr(data-customer-name);
+      display: block;
+      position: absolute;
+      bottom: 0;
+      transform: translateY(7px);
+      font-size: 0.8em;
+    }
+  }
 }
 
 .c-cart-count {

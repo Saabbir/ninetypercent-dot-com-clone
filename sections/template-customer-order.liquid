@@ -1,18 +1,145 @@
 <div class="c-order-page u-py-32">
   <div class="l-wrap">
-    <header class="u-d-f u-jc-sb u-gap-16 u-mb-32">
+    <header class="u-d-f u-jc-sb u-gap-16 u-mb-40">
       <div>
-        <h2 class="u-d-f u-ai-center u-gap-16">
-          <span>Order {{ order.name }}</span>
+        <h2 class="u-d-f u-ai-center u-gap-8">
+          <span class="u-mr-16">Order {{ order.name }}</span>
+          <span class="c-badge c-badge--black">{{ order.fulfillment_status_label }}</span>
           <span class="c-badge c-badge--red">{{ order.financial_status_label }}</span>
         </h2>
         <p class="u-mt-8 u-text-gray">Placed on {{ order.created_at | date: format: 'date' }}</p>
+        <div class="u-mt-16">
+          <a
+            class="c-btn c-btn--small c-btn--black c-btn--rounded"
+            target="_blank"
+            href="{{ order.line_items.first.fulfillment.tracking_url }}"
+          >
+            <span>Track order</span>
+            {% render 'icon-link-external' %}
+          </a>
+        </div>
       </div>
       <a href="{{ routes.account_url }}">Back to account</a>
     </header>
-    {% for item in order.line_items %}
-      <h3>{{ item.title }}</h3>
-      {{ item.image | image_url: width: 100 | image_tag }}
+
+    <h3 class="u-mb-16">Order items</h3>
+
+    {% for line_item in order.line_items %}
+      <div class="c-order-card">
+        <div class="c-order-card__top">
+          <div class="c-order-card__img-and-info">
+            <a class="c-order-card__img-wrapper" href="{{ line_item.variant.url }}">
+              {% if line_item.image %}
+                {{ line_item.image | image_url: width: 200 | image_tag }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {% endif %}
+            </a>
+            <div class="c-order-card__info">
+              <h3 class="u-mb-16">
+                <a href="{{ line_item.variant.url }}" class="u-no-underline">{{ line_item.title }}</a>
+              </h3>
+              <table>
+                <tr>
+                  <td>Price</td>
+                  <td>{{ line_item.original_price | money }}</td>
+                </tr>
+                <tr>
+                  <td>Quantity</td>
+                  <td>{{ line_item.quantity }}</td>
+                </tr>
+                <tr>
+                  <td>Final Price</td>
+                  <td>{{ line_item.final_line_price | money }}</td>
+                </tr>
+              </table>
+              <p class="u-mt-16">{{ line_item.product.description | strip_html | truncatewords: 15 }}</p>
+            </div>
+          </div>
+          {% if order.shipping_address %}
+            <div class="c-order-card__delivery-address">
+              <h3 class="u-mb-16">Delivery address</h3>
+              {{ order.shipping_address | format_address }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="c-order-card__fulfillment">
+          <h3 class="u-mb-8">Fulfillment</h3>
+
+          {% if line_item.successfully_fulfilled_quantity > 0 %}
+            <div class="u-d-f u-jc-sb u-gap-16 u-ai-start">
+              <div>
+                <p>
+                  We have fulfilled <strong>{{ line_item.successfully_fulfilled_quantity }}</strong> items of your
+                  recent order.
+                </p>
+                <p>Tracking company: {{ line_item.fulfillment.tracking_company }}</p>
+                <p>Tracking number: {{ line_item.fulfillment.tracking_number }}</p>
+              </div>
+              <a
+                class="c-btn c-btn--small c-btn--black c-btn--rounded"
+                target="_blank"
+                href="{{ line_item.fulfillment.tracking_url }}"
+              >
+                <span>Track order</span>
+                {% render 'icon-link-external' %}
+              </a>
+            </div>
+          {% else %}
+            <p>This item is not yet fulfilled</p>
+          {% endif %}
+        </div>
+      </div>
     {% endfor %}
+
+    <div class="c-order-page__payment-details u-d-f u-gap-32 u-jc-sb">
+      <div>
+        <h3 class="u-mb-16">Billing address</h3>
+        {{ order.billing_address | format_address }}
+      </div>
+      <div>
+        <h3 class="u-mb-16">Payment details</h3>
+        {% if order.transactions.size > 0 %}
+          <div class="u-d-grid u-gap-16">
+            {% for transaction in order.transactions %}
+              <div class="c-transaction-info">
+                <p>Gateway: {{ transaction.gateway }}</p>
+                <p>Kind: {{ transaction.kind }}</p>
+                <p>Amount: {{ transaction.amount | money }}</p>
+                <p>Last 4 digits: {{ transaction.payment_details.credit_card_last_four_digits }}</p>
+                {% if transaction.status_label == 'Success' %}
+                  {% assign transactionColor = 'success' %}
+                {% else %}
+                  {% assign transactionColor = 'red' %}
+                {% endif %}
+                <div class="u-mt-8 c-badge c-badge--{{transactionColor}}">{{ transaction.status_label }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No transaction history found for this order.</p>
+        {% endif %}
+      </div>
+      <div>
+        <table>
+          <tr>
+            <td>Subtotal</td>
+            <td>{{ order.subtotal_price | money }}</td>
+          </tr>
+          <tr>
+            <td>Shipping</td>
+            <td>{{ order.shipping_price | money }}</td>
+          </tr>
+          <tr>
+            <td>Taxes</td>
+            <td>{{ order.tax_price | money }}</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>{{ order.total_price | money }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

@@ -5,46 +5,82 @@
     </header>
 
     <div>
-      <h3 class="u-mb-32">Order history</h3>
-      {% assign orders_count = customer.orders | size %}
-      {% if orders_count > 0 %}
-        {% paginate customer.orders by 12 %}
-          <div class="l-col-3">
-            {% for order in customer.orders %}
-              <div class="c-card">
-                <a href="{{ order.customer_url }}" class="c-card__img-wrapper">
-                  {% if order.line_items.first.image %}
-                    {{ order.line_items.first.image | image_url: width: 400 | image_tag }}
+      <h3 class="u-mb-16">Order history</h3>
+      {% if customer.orders.size > 0 %}
+        <div class="l-col-4">
+          {% for order in customer.orders %}
+            <div class="c-card">
+              <a href="{{ order.customer_url }}" class="c-card__img-wrapper">
+                {% if order.line_items.first.image %}
+                  {{ order.line_items.first.image | image_url: width: 400 | image_tag }}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {% endif %}
+              </a>
+              <div class="c-card__copy u-p-16">
+                <div class="u-d-f u-ai-center u-jc-sb u-gap-16">
+                  {% if order.fulfillment_status_label == 'Fulfilled' %}
+                    {% assign color = 'success' %}
                   {% else %}
-                    {{ 'product-1' | placeholder_svg_tag }}
+                    {% assign color = 'gray' %}
                   {% endif %}
-                </a>
-                <div class="c-card__copy">
-                  <div class="u-d-f u-ai-center u-jc-sb u-gap-16">
-                    <div>{{ order.name }}</div>
-                    <div class="c-badge c-badge--red">{{ order.financial_status }}</div>
-                  </div>
+
+                  <div>{{ order.name }}</div>
+                  <div class="c-badge c-badge--{{color}}">{{ order.fulfillment_status_label }}</div>
+                </div>
+                <div class="u-mt-8 u-text-gray u-d-f u-ai-center u-jc-sb u-gap-8 u-flex-wrap">
+                  <span class="u-text-uppercase">{{- order.financial_status }}</span>
+                  <span>{{ order.total_price | money }}</span>
                 </div>
               </div>
-            {% endfor %}
-          </div>
-        {% endpaginate %}
+            </div>
+          {% endfor %}
+        </div>
       {% else %}
         <p>You haven't placed any orders yet!</p>
       {% endif %}
     </div>
 
-    <div class="c-hr u-my-62"></div>
+    <div class="c-account-page__addresses u-mt-32">
+      <h3 class="u-mb-16">Addresses</h3>
 
-    <div>
-      <h3 class="u-mb-32">Addresses</h3>
-      {% for address in customer.addresses %}
-        <div class="c-card">
-          <div class="c-card__copy">
-            {{ address | format_address }}
-          </div>
+      {% if customer.addresses.size > 0 %}
+        <div class="l-col-3">
+          {% for address in customer.addresses %}
+            <div class="c-card" data-card-no="{{ forloop.index }}">
+              <div class="c-card__copy">
+                {{ address | format_address }}
+              </div>
+            </div>
+          {% endfor %}
         </div>
-      {% endfor %}
+      {% else %}
+        <p>No addresses found for this account.</p>
+      {% endif %}
+
+      <div class="u-mt-16">
+        <a class="u-link" href="{{ routes.account_addresses_url }}">
+          <span>View all addresses</span>
+          {% render 'icon-arrow-right' %}
+        </a>
+      </div>
     </div>
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Template Customer Account",
+  "settings": [
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "label": "Posts per page",
+      "default": 4,
+      "min": 2,
+      "max": 8,
+      "step": 1
+    }
+  ]
+}
+{% endschema %}

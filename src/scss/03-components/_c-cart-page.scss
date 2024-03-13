@@ -1,7 +1,17 @@
 .c-cart-page {
+  td,
+  th {
+    border: 0;
+    padding-left: 0;
+  }
+
   tbody td {
     padding: 32px 32px 32px 0;
     vertical-align: top;
+  }
+
+  tr:not(:last-child) {
+    border-bottom: 1px solid $border-color;
   }
 
   th {

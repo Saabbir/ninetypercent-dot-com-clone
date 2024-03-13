@@ -8,6 +8,7 @@
   font-weight: 700;
   min-width: 100px;
   display: inline-flex;
+  gap: 4px;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
@@ -43,5 +44,14 @@
   &:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+
+  &--small {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  &--rounded {
+    border-radius: 4px;
   }
 }

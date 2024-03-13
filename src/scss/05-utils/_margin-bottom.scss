@@ -65,3 +65,7 @@
 .u-mb-62 {
   margin-bottom: 62px;
 }
+
+.u-mb-16-not-last-child:not(:last-child) {
+  margin-bottom: 16px;
+}
