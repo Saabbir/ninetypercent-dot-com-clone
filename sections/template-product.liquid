@@ -14,8 +14,7 @@
       </div>
 
       <!-- Swiper slider main container -->
-      <div class="swiper u-hidden-gte-1024">
-        <!-- Additional required wrapper -->
+      <div class="swiper c-swiper c-product-media-slider u-hidden-gte-1024">
         <div class="swiper-wrapper">
           <!-- Slides -->
           {% for media in product.media %}
@@ -24,6 +23,7 @@
             </div>
           {% endfor %}
         </div>
+
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
 
@@ -171,8 +171,25 @@
       }
     }
   }
-
   customElements.define('variant-selector', VariantSelector);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.c-product-media-slider', {
+      direction: 'horizontal',
+      loop: false,
+
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  });
 </script>
 
 {% schema %}

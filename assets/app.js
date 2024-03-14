@@ -30,34 +30,4 @@ void (function () {
         .classList.toggle("is-clicked");
     }
   }
-
-  // Handle product page functionality
-  if (location.pathname.includes("/products")) {
-    const swiperEl = document.querySelector(".swiper");
-
-    if (swiperEl) {
-      void (function pollForSwiper() {
-        if (window.Swiper) {
-          const swiper = new Swiper(".swiper", {
-            // Optional parameters
-            direction: "horizontal",
-            loop: false,
-
-            // If we need pagination
-            pagination: {
-              el: ".swiper-pagination",
-            },
-
-            // Navigation arrows
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            },
-          });
-        } else {
-          setTimeout(pollForSwiper, 100);
-        }
-      })();
-    }
-  }
 })();

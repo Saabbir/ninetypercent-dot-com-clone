@@ -20,41 +20,34 @@
       {% render 'icon-x-mark' %}
     </div>
     <nav class="c-header__nav">
-      <ul>
+      <ul class="c-header__nav-main">
         {% for link in linklists[section.settings.menu].links %}
           {% if link.links != blank %}
             <li class="c-dropdown-menu-wrapper">
-              <a href="{{ link.url }}">
+              <a href="{{ link.url }}" class="c-header__nav-link">
                 <span>{{ link.title }}</span>
                 {% render 'icon-chevron-down' %}
               </a>
               <ul class="c-dropdown-menu">
                 {% for dropLink in link.links %}
                   <li>
-                    <a href="{{ dropLink.url }}">{{ dropLink.title }}</a>
+                    <a href="{{ dropLink.url }}" class="c-header__nav-dropdown-link">{{ dropLink.title }}</a>
                   </li>
                 {% endfor %}
               </ul>
             </li>
           {% else %}
             <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
+              <a href="{{ link.url }}" class="c-header__nav-link">{{ link.title }}</a>
             </li>
           {% endif %}
         {% endfor %}
       </ul>
-      <ul>
-        <li>
-          <a href="{{ routes.cart_url }}">
-            {%- render 'icon-cart' %}
-            {% if cart.item_count > 0 %}
-              <sup class="c-cart-count">{{ cart.item_count }}</sup>
-            {% endif %}
-          </a>
-        </li>
+      <ul class="c-header__nav-icons">
+        <!-- Search -->
         {% if request.page_type != 'search' %}
           <li>
-            <a class="c-search-container">
+            <a class="c-header__nav-link c-search-container">
               {% render 'icon-search' %}
               {% render 'icon-x-mark' %}
 
@@ -73,15 +66,37 @@
         <!-- Account stuffs -->
         {% if shop.customer_accounts_enabled %}
           {% if customer %}
-            <li><a href="{{ routes.account_url }}">Account</a></li>
-            <li>
-              <a href="{{ routes.account_logout_url }}" data-customer-name="{{ customer.first_name }}">Logout</a>
+            <li class="c-dropdown-menu-wrapper">
+              <a href="#" class="c-header__nav-link">{% render 'icon-user' %}</a>
+              <ul class="c-dropdown-menu">
+                <li><a href="{{ routes.account_url }}" class="c-header__nav-sublink">Account</a></li>
+                <li>
+                  <a href="{{ routes.account_logout_url }}" class="c-header__nav-sublink"
+                    >Logout as {{ customer.first_name -}}
+                  </a>
+                </li>
+              </ul>
             </li>
           {% else %}
-            <li><a href="{{ routes.account_login_url }}">Login</a></li>
-            <li><a href="{{ routes.account_register_url }}">Register</a></li>
+            <li class="c-dropdown-menu-wrapper">
+              <a href="#" class="c-header__nav-link">{% render 'icon-user' %}</a>
+              <ul class="c-dropdown-menu">
+                <li><a href="{{ routes.account_login_url }}" class="c-header__nav-sublink">Login</a></li>
+                <li><a href="{{ routes.account_register_url }}" class="c-header__nav-sublink">Sign Up</a></li>
+              </ul>
+            </li>
           {% endif %}
         {% endif %}
+
+        <!-- Cart -->
+        <li>
+          <a href="{{ routes.cart_url }}" class="c-header__nav-link">
+            {%- render 'icon-cart' %}
+            {% if cart.item_count > 0 %}
+              <sup class="c-cart-count">{{ cart.item_count }}</sup>
+            {% endif %}
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

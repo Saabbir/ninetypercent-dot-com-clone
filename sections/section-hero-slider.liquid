@@ -1,0 +1,68 @@
+<div>
+  <div class="swiper c-hero-slider">
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      {% for collection in collections %}
+        <div
+          class="swiper-slide c-hero-slider__slide"
+          style="background-image: url('{{ collection.featured_image | image_url: width: 1920 }}');"
+        >
+          <div class="l-wrap">
+            <div class="c-hero-slider__slide-content">
+              <h1>{{ collection.title }}</h1>
+              {% if collection.description %}
+                <p class="u-mt-8">{{ collection.description }}</p>
+              {% endif %}
+              <div class="u-mt-24">
+                <a href="{{ collection.url }}" class="c-btn c-btn--black c-btn--pill">Shop now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('Saabbir:', 'dom content has been loaded');
+    console.log('Saabbir:', 'Swiper', Swiper);
+
+    const swiper = new Swiper('.c-hero-slider', {
+      direction: 'horizontal',
+      loop: false,
+      slidesPerView: 1,
+
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Hero Slider"
+    }
+  ]
+}
+{% endschema %}

@@ -5,9 +5,10 @@
       "settings": {
         "featured_collection": "featured-collection"
       }
+    },
+    "hero-slider": {
+      "type": "section-hero-slider"
     }
   },
-  "order": [
-    "featured_collection"
-  ]
+  "order": ["hero-slider", "featured_collection"]
 }
