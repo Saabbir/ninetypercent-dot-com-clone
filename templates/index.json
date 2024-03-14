@@ -7,5 +7,7 @@
       }
     }
   },
-  "order": ["featured_collection"]
+  "order": [
+    "featured_collection"
+  ]
 }

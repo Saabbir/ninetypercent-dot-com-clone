@@ -6,7 +6,7 @@
         <div class="l-wrap-700 u-text-center">
           <time
             class="c-article__published-date"
-            datetime="{{ article.published_at |  date: '%Y-%m-%d' }}"
+            datetime="{{ article.published_at | date: '%Y-%m-%d' }}"
           >
             {{- article.published_at | date: format: 'on_date' -}}
           </time>
@@ -123,7 +123,9 @@
 {% schema %}
 {
   "name": "Article Section",
-  "settings": [],
+  "settings": [
+
+  ],
   "max_blocks": 5,
   "blocks": [
     {

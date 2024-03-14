@@ -112,7 +112,7 @@
                 {% else %}
                   {% assign transactionColor = 'red' %}
                 {% endif %}
-                <div class="u-mt-8 c-badge c-badge--{{transactionColor}}">{{ transaction.status_label }}</div>
+                <div class="u-mt-8 c-badge c-badge--{{ transactionColor }}">{{ transaction.status_label }}</div>
               </div>
             {% endfor %}
           </div>

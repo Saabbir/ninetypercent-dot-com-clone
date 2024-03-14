@@ -4,5 +4,7 @@
       "type": "welcome"
     }
   },
-  "order": ["welcome"]
+  "order": [
+    "welcome"
+  ]
 }
