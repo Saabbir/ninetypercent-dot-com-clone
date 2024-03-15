@@ -12,7 +12,10 @@
     </h4>
     <div class="c-product-card__price u-mt-8">{{ product.price | money }}</div>
     {% if object_type != null %}
-      <a class="u-link u-mt-32" href="{{ product.url }}">View product {% render 'icon-arrow-right' -%}</a>
+      <a class="c-link u-mt-16" href="{{ product.url }}">
+        <span>View product </span>
+        {% render 'icon-arrow-right' -%}
+      </a>
     {% endif %}
   </div>
 </div>

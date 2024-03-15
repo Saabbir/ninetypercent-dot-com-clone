@@ -1,8 +1,8 @@
-<div class="c-contact-form u-my-62">
+<div class="c-contact-form u-py-62">
   <div class="l-wrap-{{ section.settings.form_width }}">
     {% form 'contact', class: 'c-form' %}
       {% if section.settings.title != blank %}
-        <h2 class="u-my-16">{{ section.settings.title }}</h2>
+        <h2 class="u-mb-32">{{ section.settings.title }}</h2>
       {% endif %}
 
       {% if form.posted_successfully? %}
@@ -32,7 +32,7 @@
           <textarea name="contact[body]" id="contact_message" placeholder="Howdy? ..."></textarea>
         </div>
         <div>
-          <button type="submit" class="c-btn c-btn--black u-minw-150">{{ section.settings.btn_text }}</button>
+          <button type="submit" class="c-btn c-btn--black c-btn--full">{{ section.settings.btn_text }}</button>
         </div>
       </div>
     {% endform %}
@@ -48,7 +48,7 @@
       "type": "text",
       "id": "title",
       "label": "Title",
-      "default": "Contact us"
+      "default": "Get in touch"
     },
     {
       "type": "text",

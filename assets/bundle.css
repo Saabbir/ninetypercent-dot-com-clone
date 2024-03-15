@@ -152,6 +152,27 @@ label {
   display: none !important;
 }
 
+.shopify-challenge__container {
+  padding: 32px 16px;
+}
+.shopify-challenge__message {
+  margin-bottom: 16px;
+}
+.shopify-challenge__button {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-top: 16px !important;
+  transition: 0.15s;
+}
+.shopify-challenge__button:hover, .shopify-challenge__button:focus {
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+}
+
 .l-wrap, .l-wrap-1200, .l-wrap-800, .l-wrap-700, .l-wrap-600 {
   width: 100%;
   max-width: 1000px;
@@ -327,7 +348,7 @@ label {
   align-items: center;
   justify-content: center;
 }
-.c-header__nav-link {
+.c-header__nav-link, .c-header__nav-dropdown-link {
   text-decoration: none;
   font-size: 13px;
   letter-spacing: 1px;
@@ -339,10 +360,10 @@ label {
   align-items: center;
   white-space: nowrap;
 }
-.c-header__nav-link:hover, .c-header__nav-link:focus {
+.c-header__nav-link:hover, .c-header__nav-link:focus, .c-header__nav-dropdown-link:hover, .c-header__nav-dropdown-link:focus {
   color: #000;
 }
-.c-header__nav-link > svg {
+.c-header__nav-link > svg, .c-header__nav-dropdown-link > svg {
   width: 20px;
 }
 .c-header__nav-icons .c-header__nav-link {
@@ -422,8 +443,15 @@ label {
 @media (min-width: 1024px) {
   .c-dropdown-menu > li > a {
     text-align: right;
-    padding: 8px 26px 8px 16px;
+    padding: 8px 21px 8px 16px;
   }
+}
+
+.c-header__nav-icons .c-dropdown-menu {
+  right: 0;
+}
+.c-header__nav-icons .c-dropdown-menu > li > a {
+  padding-right: 16px;
 }
 
 .c-btn {
@@ -449,7 +477,6 @@ label {
   background-color: #000;
   border-color: #000;
   color: #fff;
-  border-radius: 25px;
 }
 .c-btn--pill {
   border-radius: 25px;
@@ -634,6 +661,7 @@ label {
   padding: 16px;
   position: relative;
   margin-top: 48px;
+  margin-bottom: 24px;
 }
 .errors > ul {
   padding-left: 20px;
@@ -688,11 +716,19 @@ label {
   align-items: start;
   justify-content: start;
 }
-.c-card__img-wrapper > img {
-  width: 100%;
+.c-card__img-wrapper {
+  padding-bottom: 56.25%;
+  position: relative;
+  display: block;
 }
-.c-card__img {
+.c-card__img-wrapper > .c-card__img,
+.c-card__img-wrapper > img,
+.c-card__img-wrapper > svg {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 .c-card__copy {
   padding: 24px;
@@ -726,7 +762,9 @@ label {
   position: relative;
   display: block;
 }
-.c-product-card__img-wrapper > img {
+.c-product-card__img-wrapper > .c-card__img,
+.c-product-card__img-wrapper > img,
+.c-product-card__img-wrapper > svg {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -999,6 +1037,8 @@ label {
   transition: 0.15s;
   min-width: 45px;
   text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 .c-custom-pagination > a:hover,
 .c-custom-pagination > a:focus {
@@ -1061,6 +1101,32 @@ label {
   text-align: center;
   margin-bottom: 80px;
   color: #fff;
+}
+
+.c-link {
+  display: inline-flex;
+  color: #000;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-bottom: 1px solid;
+  position: relative;
+}
+.c-link > svg {
+  width: 16px;
+  margin-left: 0;
+  transition: 0.2s;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-top: 4px;
+  transition: 0.2s;
+  opacity: 0;
+}
+.c-link:hover svg, .c-link:focus svg {
+  margin-left: 5px;
+  opacity: 1;
 }
 
 .c-object-type {
@@ -1548,80 +1614,13 @@ label {
   gap: 32px 16px;
 }
 
+.u-color-red {
+  color: red;
+}
+
+.u-color-gray,
 .u-text-gray {
-  color: #888;
-}
-
-.u-text-left {
-  text-align: left;
-}
-
-.u-text-center {
-  text-align: center;
-}
-
-.u-text-right {
-  text-align: right;
-}
-
-.u-mw-600 {
-  max-width: 600px;
-}
-
-.u-link {
-  display: inline-flex;
-  color: #000;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-  border-bottom: 1px solid;
-  position: relative;
-}
-.u-link > svg {
-  width: 16px;
-  margin-left: 0;
-  transition: 0.2s;
-  position: absolute;
-  left: 100%;
-  top: 0;
-  margin-top: 4px;
-  transition: 0.2s;
-  opacity: 0;
-}
-.u-link:hover svg, .u-link:focus svg {
-  margin-left: 5px;
-  opacity: 1;
-}
-
-.u-text-uppercase,
-.u-text-upcase {
-  text-transform: uppercase;
-}
-
-.u-text-capitalize {
-  text-transform: capitalize;
-}
-
-.u-text-lowercase,
-.u-text-downcase {
-  text-transform: lowercase;
-}
-
-.u-no-underline {
-  text-decoration: none;
-}
-
-.u-text-linethrough {
-  text-decoration: line-through;
-}
-
-.u-text-normal {
-  font-weight: normal;
-}
-
-.u-underline {
-  text-decoration: underline;
+  color: #707070;
 }
 
 .u-color-gray {
@@ -1632,20 +1631,8 @@ label {
   background-color: #f5f5f5;
 }
 
-.u-w-auto {
-  width: auto;
-}
-
-.u-w-full {
-  width: 100%;
-}
-
-.u-h-full {
-  height: 100%;
-}
-
-.u-object-cover {
-  object-fit: cover;
+.u-d-grid {
+  display: grid;
 }
 
 @media (min-width: 1024px) {
@@ -1666,20 +1653,93 @@ label {
   }
 }
 
-.u-color-red {
-  color: red;
+.u-text-normal {
+  font-weight: normal;
 }
 
-.u-d-grid {
-  display: grid;
+.u-text-bold {
+  font-weight: bold;
+}
+
+.u-text-uppercase,
+.u-text-upcase {
+  text-transform: uppercase;
+}
+
+.u-text-lowercase,
+.u-text-downcase {
+  text-transform: lowercase;
+}
+
+.u-text-capitalize {
+  text-transform: capitalize;
+}
+
+.u-text-left {
+  text-align: left;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+.u-text-linethrough {
+  text-decoration: line-through;
+}
+
+.u-no-underline,
+.u-text-underline-none {
+  text-decoration: none;
+}
+
+.u-underline,
+.u-text-underline {
+  text-decoration: underline;
+}
+
+.u-letter-spacing-1,
+.u-text-ls-1 {
+  letter-spacing: 1px;
+}
+
+.u-font-size-12 {
+  font-size: 12px;
+}
+
+.u-w-auto {
+  width: auto;
+}
+
+.u-w-full {
+  width: 100%;
+}
+
+.u-w-20 {
+  width: 20px;
+}
+
+.u-minw-auto {
+  min-width: auto;
 }
 
 .u-minw-150 {
   min-width: 150px;
 }
 
-.u-font-size-12 {
-  font-size: 12px;
+.u-maxw-600 {
+  max-width: 600px;
+}
+
+.u-h-full {
+  height: 100%;
+}
+
+.u-object-cover {
+  object-fit: cover;
 }
 
 .u-position-relative {

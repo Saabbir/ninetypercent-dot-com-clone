@@ -1,9 +1,12 @@
 <div class="u-py-32">
   <div class="l-wrap">
+    <h1 class="u-mb-32 u-text-center">Search</h1>
     <form action="{{ routes.search_url }}" class="c-search-page-search-form u-mb-32 u-mx-auto" method="get">
       <div class="c-search-page-search-form__group">
         <input type="search" name="q" placeholder="Search..." value="{{ search.terms }}">
-        <button type="submit" class="c-btn c-btn--black">Search</button>
+        <button type="submit" class="c-btn c-btn--black u-minw-auto">
+          {% render 'icon-search', class: 'u-w-20' %}
+        </button>
       </div>
     </form>
     {% paginate search.results by section.settings.results_per_page %}
@@ -59,7 +62,7 @@
       "id": "results_per_page",
       "min": 4,
       "max": 12,
-      "default": 8,
+      "default": 6,
       "label": "Results per page",
       "step": 1
     },

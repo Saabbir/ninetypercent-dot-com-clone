@@ -69,9 +69,9 @@
             <li class="c-dropdown-menu-wrapper">
               <a href="#" class="c-header__nav-link">{% render 'icon-user' %}</a>
               <ul class="c-dropdown-menu">
-                <li><a href="{{ routes.account_url }}" class="c-header__nav-sublink">Account</a></li>
+                <li><a href="{{ routes.account_url }}" class="c-header__nav-dropdown-link">Account</a></li>
                 <li>
-                  <a href="{{ routes.account_logout_url }}" class="c-header__nav-sublink"
+                  <a href="{{ routes.account_logout_url }}" class="c-header__nav-dropdown-link"
                     >Logout as {{ customer.first_name -}}
                   </a>
                 </li>
@@ -81,8 +81,8 @@
             <li class="c-dropdown-menu-wrapper">
               <a href="#" class="c-header__nav-link">{% render 'icon-user' %}</a>
               <ul class="c-dropdown-menu">
-                <li><a href="{{ routes.account_login_url }}" class="c-header__nav-sublink">Login</a></li>
-                <li><a href="{{ routes.account_register_url }}" class="c-header__nav-sublink">Sign Up</a></li>
+                <li><a href="{{ routes.account_login_url }}" class="c-header__nav-dropdown-link">Login</a></li>
+                <li><a href="{{ routes.account_register_url }}" class="c-header__nav-dropdown-link">Sign Up</a></li>
               </ul>
             </li>
           {% endif %}

@@ -1,6 +1,6 @@
 <div class="c-card u-position-relative">
   {% comment %} <span class="c-object-type">Article</span> {% endcomment %}
-  <a href="{{ article.url }}" class="u-d-flex">
+  <a href="{{ article.url }}" class="c-card__img-wrapper">
     {% if article.image %}
       {{ article.image | image_url: width: 400 | image_tag: class: 'c-card__img' }}
     {% else %}
@@ -16,7 +16,7 @@
         {{ article.content | strip_html | truncatewords: 15 }}
       {% endif %}
     </p>
-    <a class="u-mt-32 u-link" href="{{ article.url }}">
+    <a class="u-mt-32 c-link" href="{{ article.url }}">
       {% if section.settings.read_more_label != null %}
         {{- section.settings.read_more_label }}
       {% else %}

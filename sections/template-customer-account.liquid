@@ -1,15 +1,15 @@
 <div class="c-account-page u-py-32">
   <div class="l-wrap">
-    <header class="u-mb-32">
+    <div class="u-mb-32">
       <h1>Your account</h1>
-    </header>
+    </div>
 
-    <div>
+    <div class="c-account-page__order-history">
       <h3 class="u-mb-16">Order history</h3>
       {% if customer.orders.size > 0 %}
         <div class="l-col-4">
           {% for order in customer.orders %}
-            <div class="c-card">
+            <div class="c-card c-order-history-card">
               <a href="{{ order.customer_url }}" class="c-card__img-wrapper">
                 {% if order.line_items.first.image %}
                   {{ order.line_items.first.image | image_url: width: 400 | image_tag }}
@@ -26,11 +26,11 @@
                   {% endif %}
 
                   <div>{{ order.name }}</div>
-                  <div class="c-badge c-badge--{{ color }}">{{ order.fulfillment_status_label }}</div>
+                  <div class="c-order-history-card__price">{{ order.total_price | money }}</div>
                 </div>
                 <div class="u-mt-8 u-text-gray u-d-f u-ai-center u-jc-sb u-gap-8 u-flex-wrap">
-                  <span class="u-text-uppercase">{{- order.financial_status }}</span>
-                  <span>{{ order.total_price | money }}</span>
+                  <div class="c-badge c-badge--{{ color }}">{{ order.fulfillment_status_label }}</div>
+                  <div class="c-badge c-badge--black">{{- order.financial_status }}</div>
                 </div>
               </div>
             </div>
@@ -41,8 +41,14 @@
       {% endif %}
     </div>
 
-    <div class="c-account-page__addresses u-mt-32">
-      <h3 class="u-mb-16">Addresses</h3>
+    <div class="c-account-page__addresses u-mt-48">
+      <div class="u-d-f u-ai-center u-jc-sb u-gap-16 u-flex-wrap u-mb-16">
+        <h3>Addresses</h3>
+        <a class="c-link" href="{{ routes.account_addresses_url }}">
+          <span>View all addresses</span>
+          {% render 'icon-arrow-right' %}
+        </a>
+      </div>
 
       {% if customer.addresses.size > 0 %}
         <div class="l-col-3">
@@ -57,13 +63,6 @@
       {% else %}
         <p>No addresses found for this account.</p>
       {% endif %}
-
-      <div class="u-mt-16">
-        <a class="u-link" href="{{ routes.account_addresses_url }}">
-          <span>View all addresses</span>
-          {% render 'icon-arrow-right' %}
-        </a>
-      </div>
     </div>
   </div>
 </div>

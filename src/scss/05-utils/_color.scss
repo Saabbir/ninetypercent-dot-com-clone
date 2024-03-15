@@ -1,3 +1,16 @@
+.u-color-red {
+  color: red;
+}
+
+.u-color-gray,
 .u-text-gray {
-  color: #888;
+  color: $text-color-gray;
+}
+
+.u-color-gray {
+  color: $text-color-gray;
+}
+
+.u-bg-gray {
+  background-color: $bg-color-gray;
 }

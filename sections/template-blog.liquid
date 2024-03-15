@@ -1,6 +1,6 @@
 <div class="l-wrap u-py-32">
   {% paginate blog.articles by section.settings.posts_per_page %}
-    <h2 class="u-text-upcase u-mb-24 u-text-center">{{ blog.title }}</h2>
+    <h2 class="u-text-upcase u-mb-24 u-text-center u-letter-spacing-1">{{ blog.title }}</h2>
     <div class="c-cards">
       {% for article in blog.articles %}
         {% render 'article-card', article: article %}
