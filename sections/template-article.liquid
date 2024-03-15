@@ -84,7 +84,7 @@
 
       <!-- Comment form -->
       <div id="comment_form">
-        <h2>Any comment?</h2>
+        <h2 class="u-mb-32">Any comment?</h2>
         {% form 'new_comment', article %}
           {% if form.posted_successfully? %}
             <div class="c-comment__posted-successfully">
@@ -97,7 +97,7 @@
             {{ form.errors | default_errors }}
           {% endif %}
 
-          <div class="l-col-2 u-mt-24">
+          <div class="l-col-2">
             <div class="c-form-group">
               <label for="comment_name">Name</label>
               <input type="text" name="comment[author]" id="comment_name" required placeholder="Jane Doe">
@@ -123,9 +123,7 @@
 {% schema %}
 {
   "name": "Article Section",
-  "settings": [
-
-  ],
+  "settings": [],
   "max_blocks": 5,
   "blocks": [
     {

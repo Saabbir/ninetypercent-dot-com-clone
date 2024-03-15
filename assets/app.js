@@ -6,7 +6,7 @@ void (function () {
      * Handle header hamburger click
      */
     if (clickEvent.target.closest(".c-header__hamburger")) {
-      const nav = document.querySelector(".c-header__nav");
+      const nav = document.querySelector(".c-header__nav-main");
       if (nav) {
         nav.classList.toggle("is-visible");
       }

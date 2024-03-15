@@ -19,6 +19,23 @@
     font-size: 11px;
     letter-spacing: 1px;
     color: $text-color-gray;
+    white-space: nowrap;
+  }
+
+  &__product-info {
+    min-width: 200px;
+  }
+
+  &__remove-quantity-link {
+    color: red;
+
+    > svg {
+      width: 20px;
+    }
+  }
+
+  &__product-price {
+    white-space: nowrap;
   }
 
   &__header {

@@ -1,6 +1,6 @@
 <div class="c-order-page u-py-32">
   <div class="l-wrap">
-    <header class="u-d-f u-jc-sb u-gap-16 u-mb-40">
+    <header class="u-d-f u-jc-sb u-gap-16 u-mb-40 u-flex-wrap">
       <div>
         <h2 class="u-d-f u-ai-center u-gap-8">
           <span class="u-mr-16">Order {{ order.name }}</span>
@@ -67,7 +67,7 @@
           <h3 class="u-mb-8">Fulfillment</h3>
 
           {% if line_item.successfully_fulfilled_quantity > 0 %}
-            <div class="u-d-f u-jc-sb u-gap-16 u-ai-start">
+            <div class="u-d-f u-jc-sb u-gap-16 u-ai-start u-flex-wrap">
               <div>
                 <p>
                   We have fulfilled <strong>{{ line_item.successfully_fulfilled_quantity }}</strong> items of your
@@ -92,12 +92,12 @@
       </div>
     {% endfor %}
 
-    <div class="c-order-page__payment-details u-d-f u-gap-32 u-jc-sb">
-      <div>
+    <div class="c-order-page__payment-details u-d-f u-gap-32 u-jc-sb u-flex-wrap">
+      <div class="c-order-page__billing-address">
         <h3 class="u-mb-16">Billing address</h3>
         {{ order.billing_address | format_address }}
       </div>
-      <div>
+      <div class="c-order-page__transactions">
         <h3 class="u-mb-16">Payment details</h3>
         {% if order.transactions.size > 0 %}
           <div class="u-d-grid u-gap-16">
@@ -120,8 +120,8 @@
           <p>No transaction history found for this order.</p>
         {% endif %}
       </div>
-      <div>
-        <table>
+      <div class="c-order-page__subtotal-table">
+        <table class="u-text-nowrap">
           <tr>
             <td>Subtotal</td>
             <td>{{ order.subtotal_price | money }}</td>

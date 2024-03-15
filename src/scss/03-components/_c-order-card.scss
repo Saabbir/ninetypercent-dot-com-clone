@@ -8,13 +8,17 @@
 
   &__top {
     display: flex;
-    gap: 62px;
+    flex-wrap: wrap;
+    gap: 32px 62px;
   }
 
   &__img-and-info {
     display: grid;
-    grid-template-columns: 150px 1fr;
     gap: 16px;
+
+    @media (min-width: 500px) {
+      grid-template-columns: 150px 1fr;
+    }
   }
 
   &__delivery-address {
@@ -23,6 +27,7 @@
 
   &__info {
     max-width: 400px;
+    min-width: 250px;
   }
 
   &__fulfillment {

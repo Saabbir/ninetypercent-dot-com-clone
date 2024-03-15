@@ -9,57 +9,64 @@
       </header>
 
       <form action="{{ routes.cart_url }}" method="post" novalidate>
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Qty</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in cart.items %}
+        <div class="u-table-wrapper">
+          <table>
+            <thead>
               <tr>
-                <td>
-                  <div class="c-cart-page__product">
-                    <a class="c-cart-page__product-img-link" href="{{ item.url }}">
-                      {% if item.image %}
-                        {{ item.image.src | image_url: width: 100 | image_tag }}
-                      {% else %}
-                        {{ 'product-1' | placeholder_svg_tag }}
-                      {% endif %}
-                    </a>
-                    <div class="c-cart-page__product-info">
-                      <h3 class="c-cart-page__product-title">
-                        <a href="{{ item.url }}">{{ item.product.title | truncatewords: 5 }}</a>
-                      </h3>
-                      <p class="c-cart-page__product-variant-title u-color-gray">
-                        <small>{{ item.variant.title }}</small>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td>{{ item.line_price | money }}</td>
-                <td>
-                  <input
-                    class="c-cart-page__quantity-input"
-                    type="number"
-                    name="updates[]"
-                    value="{{ item.quantity }}"
-                    min="1"
-                  >
-                </td>
-                <td>
-                  <a class="c-cart-remove-link" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">
-                    {%- render 'icon-trash' %}
-                    {% comment %} <span>Remove</span> {% endcomment %}
-                  </a>
-                </td>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Remove</th>
               </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {% for item in cart.items %}
+                <tr>
+                  <td>
+                    <div class="c-cart-page__product">
+                      <a class="c-cart-page__product-img-link" href="{{ item.url }}">
+                        {% if item.image %}
+                          {{ item.image.src | image_url: width: 100 | image_tag }}
+                        {% else %}
+                          {{ 'product-1' | placeholder_svg_tag }}
+                        {% endif %}
+                      </a>
+                      <div class="c-cart-page__product-info">
+                        <h3 class="c-cart-page__product-title">
+                          <a href="{{ item.url }}">{{ item.product.title | truncatewords: 5 }}</a>
+                        </h3>
+                        <p class="c-cart-page__product-variant-title u-color-gray">
+                          <small>{{ item.variant.title }}</small>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="c-cart-page__product-price">{{ item.line_price | money }}</div>
+                  </td>
+                  <td>
+                    <input
+                      class="c-cart-page__quantity-input"
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="1"
+                    >
+                  </td>
+                  <td>
+                    <a
+                      class="c-cart-page__remove-quantity-link"
+                      href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0"
+                    >
+                      {%- render 'icon-trash' %}
+                      {% comment %} <span>Remove</span> {% endcomment %}
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
 
         <div class="c-cart-page__checkout-section">
           <div class="c-cart-page__checkout-section-content u-pt-32">

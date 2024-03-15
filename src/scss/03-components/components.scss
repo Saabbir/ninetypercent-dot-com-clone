@@ -17,6 +17,7 @@
 @import "./c-order-card";
 @import "./c-hero-slider";
 @import "./c-link";
+@import "./c-order-page";
 
 .c-object-type {
   position: absolute;
@@ -31,14 +32,6 @@
   font-size: 11px;
   letter-spacing: 1px;
   font-weight: bold;
-}
-
-.c-cart-remove-link {
-  color: red;
-
-  > svg {
-    width: 20px;
-  }
 }
 
 .c-hr {

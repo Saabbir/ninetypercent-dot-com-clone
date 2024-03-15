@@ -13,24 +13,30 @@
         {% endfor %}
       </div>
 
-      <!-- Swiper slider main container -->
-      <div class="swiper c-swiper c-product-media-slider u-hidden-gte-1024">
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          {% for media in product.media %}
-            <div class="swiper-slide {{ media.media_type }}">
-              {% render 'product-media', media: media %}
-            </div>
-          {% endfor %}
+      {% if product.media.size > 1 %}
+        <!-- Swiper slider main container -->
+        <div class="swiper c-swiper c-product-media-slider u-hidden-gte-1024">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            {% for media in product.media %}
+              <div class="swiper-slide {{ media.media_type }}">
+                {% render 'product-media', media: media %}
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
-
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-      </div>
+      {% else %}
+        <div class="c-product-page__media {{ product.media.first.media_type }}">
+          {% render 'product-media', media: product.media.first %}
+        </div>
+      {% endif %}
     </div>
     <div class="c-product-page__infos">
       {% form 'product', product %}
