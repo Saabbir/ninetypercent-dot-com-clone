@@ -1,10 +1,8 @@
 {
   "sections": {
-    "welcome": {
-      "type": "welcome"
+    "template": {
+      "type": "template-customer-activate-account"
     }
   },
-  "order": [
-    "welcome"
-  ]
+  "order": ["template"]
 }

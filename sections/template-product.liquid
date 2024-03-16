@@ -33,7 +33,7 @@
           <div class="swiper-button-next"></div>
         </div>
       {% else %}
-        <div class="c-product-page__media {{ product.media.first.media_type }}">
+        <div class="c-product-page__media u-hidden-gte-1024 {{ product.media.first.media_type }}">
           {% render 'product-media', media: product.media.first %}
         </div>
       {% endif %}
